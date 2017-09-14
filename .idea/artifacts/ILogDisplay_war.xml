@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ILogDisplay:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ILogDisplay.war">
+      <element id="artifact" artifact-name="ILogDisplay:war exploded" />
+    </root>
+  </artifact>
+</component>
