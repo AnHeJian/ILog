@@ -115,16 +115,6 @@
     //loadDATA(option);
     myChart.setOption(option);
 
-    function randomData() {
-        var a = datas[0].value;
-        //var a =10;
-        return a;
-    }
-    function getdata(i) {
-        var a = datas[i].value;
-        //var a =10;
-        return a;
-    }
     function loadDATA(){
         $.ajax({
             type : "post",
