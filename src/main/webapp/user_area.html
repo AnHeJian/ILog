@@ -71,14 +71,13 @@
 
 
 			<!-- Breadcrumb -->
-			<ol class="breadcrumb hidden-xs">
+		<ol class="breadcrumb hidden-xs">
 				<li><a href="index.html">首页</a></li>
 				<li class="active">用户活跃度分布</li>
 			</ol>
-			<h4 class="page-title">用户活跃度分布图</h4>
+		<h4 class="page-title">用户活跃度分布图</h4>
 
-			<form class="form-inline">
-
+        <form class="form-inline" name="usr_choice" action="/usrloc.do">
 			<div class="pull-left">
 				<span class="page-title">时间：</span>
 				<div class="btn-group">
@@ -94,9 +93,10 @@
 				</div>
 			</div>
 
+			<!-- 日历控件设置初始值value-->
 			<!-- <div class="form-group ">  -->               
 			<div class="pull-left" id="DateInput">
-				<input type="date" class="form-control " id="singleDate_usersrea"
+				<input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
 				required="true" dateISO="true">
 			</div>
 			<!-- </div> -->
@@ -107,7 +107,7 @@
 
 					<div class="form-group">
 						<span class="page-title">指标：</span>
-						<select class="form-control " id="userareaKind" >    
+						<select class="form-control " id="userareaKind">
 							<option value="PV">浏览量PV</option>
 							<option value="UV">访客数UV</option>
 						</select>
@@ -118,41 +118,21 @@
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
                     </div>
             </div>
+        </form>
 
 
-			</form>
-
-
-			<div class="block-area">
+		<div class="block-area">
 
 				<div class="row">
 					<!-- World Map -->
 					<div class="col-md-12">
 						<div id="mainEC" style="width: 100%;height:600px;"></div>
 						<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainEC'),'dark-blue');
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('mainEC'),'dark');
 
 // 指定图表的配置项和数据
-var datas;
-loadDATA();
-function loadDATA(){
-    $.ajax({
-        type : "post",
-        async : false, //异步执行
-        url : "usrloc.do",
-        data : {},
-        dataType : "json", //返回数据形式为json
-        success : function(result) {
-            if(result){
-                datas = result;
-                //option.series[0].data.push(result);
-                //alert(datas[0].value);
-            }
-        }
-    });
-}
-        var option = {
+var option = {
             backgroundColor: 'rgba(0,0,0,0)',
             title: {
                 text: '用户活跃度区域分布',
@@ -165,7 +145,7 @@ function loadDATA(){
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data:['PV']
+                data:[]
             },
             visualMap: {
                 min: 0,
@@ -192,7 +172,7 @@ function loadDATA(){
             },
             series: [
                 {
-                    name: 'PV',
+                    name: '',
                     type: 'map',
                     mapType: 'china',
                     roam: false,
@@ -204,50 +184,49 @@ function loadDATA(){
                             show: true
                         }
                     },
-                    data:[
-                        {name: '北京',value: datas[0].value},
-                        {name: '天津',value: datas[1].value},
-                        {name: '上海',value: datas[2].value},
-                        {name: '重庆',value: datas[3].value},
-                        {name: '河北',value: datas[4].value },
-                        {name: '河南',value: datas[5].value},
-                        {name: '云南',value: datas[6].value},
-                        {name: '辽宁',value: datas[7].value},
-                        {name: '黑龙江',value: datas[8].value},
-                        {name: '湖南',value: datas[9].value },
-                        {name: '安徽',value: datas[10].value },
-                        {name: '山东',value: datas[11].value },
-                        {name: '新疆',value: datas[12].value },
-                        {name: '江苏',value: datas[13].value },
-                        {name: '浙江',value: datas[14].value },
-                        {name: '江西',value: datas[15].value },
-                        {name: '湖北',value: datas[16].value },
-                        {name: '广西',value: datas[17].value },
-                        {name: '甘肃',value: datas[18].value },
-                        {name: '山西',value: datas[19].value },
-                        {name: '内蒙古',value: datas[20].value },
-                        {name: '陕西',value: datas[21].value },
-                        {name: '吉林',value: datas[22].value },
-                        {name: '福建',value: datas[23].value },
-                        {name: '贵州',value: datas[24].value },
-                        {name: '广东',value: datas[25].value },
-                        {name: '青海',value: datas[26].value },
-                        {name: '西藏',value: datas[27].value },
-                        {name: '四川',value: datas[28].value },
-                        {name: '宁夏',value: datas[29].value },
-                        {name: '海南',value: datas[30].value },
-                        {name: '台湾',value: datas[31].value },
-                        {name: '香港',value: datas[32].value },
-                        {name: '澳门',value: datas[33].value }
-                    ]
+                    data: []
                 }
 
             ]
         };
+
+//使网页初始时有地图显示
+loadDATA();
+myChart.setOption(option);
+
+function loadDATA(){
+	//获取用户选择
+    var date = document.getElementById('singleDate_usersrea').value;
+    var index = document.getElementById('userareaKind').value;
+
+    option.legend.data.push(index);
+    option.series[0].name = index;
+    $.ajax({
+        type : "post",
+        async : false, //同步执行
+        url : "usrloc.do",
+        data : {
+            "usrinfo" : JSON.stringify(date+","+index)//将用户选择传递给后台，其中usrinfo相当于传递的数据的id，
+													  //后台根据这个id来获得数据
+        },
+        dataType : "json", //返回数据形式为json
+        success : function(result) {
+            if(result){
+                //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                option.series[0].data = result;
+            }
+        }
+    });
+
+}
+
 function showmap() {
+
+    loadDATA();
+
     myChart.setOption(option);
 }
-//myChart.setOption(option);
+
 </script>
 
             <!-- <div class="tile">
@@ -287,6 +266,8 @@ function showmap() {
 <!--引入ECharts-->
 <script src="js/echarts/echarts.min.js"></script>
 <script src="js/echarts/china.js"></script>
+<script src="js/echarts/dark.js"></script>
+<script src="js/echarts/dark-blue.js"></script>
 
 <!-- Charts -->
 <script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
@@ -302,8 +283,6 @@ function showmap() {
 
 <!-- Map -->
 <script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
-<!--Media Player-->
-<script src="js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
 
 <!-- UX -->
 <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
