@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ILogDisplay.beans.detaillocbean;
 import com.ILogDisplay.beans.locbean;
 import net.sf.json.JSONArray;
+import org.apache.commons.collections.map.HashedMap;
 
 public class UsrlocData {
-
+    public static Connection conn;
     public static Statement sqlConfig() {
-        Connection conn;
+
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://192.168.233.135:3306/test?useUnicode=true&characterEncoding=UTF-8";
         String user = "root";
@@ -30,41 +32,78 @@ public class UsrlocData {
         return st;
     }
 
-    public static JSONArray getUsrlocData(String date) {
+    public static JSONArray getSqlData(String date, String index) {
         String tablename = "UsrLoc" + date;
         String [] provinces = {"北京","天津","上海","重庆","河北","河南","云南","辽宁","黑龙江","湖南"
                 ,"安徽","山东","新疆","江苏","浙江","江西","湖北","广西","甘肃","山西","内蒙古","陕西","吉林",
                 "福建","贵州","广东","青海","西藏","四川","宁夏","海南","台湾","香港","澳门"};
 
         //Map<String, Object> map = new HashMap<String, Object>();
-        ArrayList<locbean> array = new ArrayList<locbean>();
-
         JSONArray resJSON =new JSONArray();
+        ArrayList<detaillocbean> dlbarray = new ArrayList<detaillocbean>();
+        ArrayList<locbean> lbarray = new ArrayList<locbean>();
+
+        Statement stmt = sqlConfig();
         for (String province : provinces) {
-            String sql = "SELECT times FROM " + tablename + " JOIN CityInfo ci ON city = ci.citycode AND ci.cityname LIKE '" + province + "%';";
+            String usrlocsql = "SELECT times FROM " + tablename + " JOIN CityInfo ci ON city = ci.citycode AND ci.cityname LIKE '" + province + "%';";
             int pvsum = 0;
-            locbean lb = new locbean();
-            //int uvsum = 0;
+            int uvsum = 0;
+
+
+
             try {
-                ResultSet rs = sqlConfig().executeQuery(sql);
+                ResultSet rs = stmt.executeQuery(usrlocsql);
                 while (rs.next()) {
                     pvsum = pvsum+rs.getInt(1);
-                    //uvsum = uvsum+1;
+                    uvsum = uvsum+1;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            //return pvsum;
-            //map.put(province, pvsum);
-            lb.setName(province);
-            lb.setValue(pvsum);
-            array.add(lb);
-            resJSON = JSONArray.fromObject(array);
-            //resJSON = JSONArray.fromObject(map);
+
+            if(!index.equals("BOTH")) {
+                locbean lb = new locbean();
+                lb.setName(province);
+
+                int sum = index.equals("PV") ? pvsum : uvsum;
+                lb.setValue(sum);
+                lbarray.add(lb);
+            }
+            else{
+                detaillocbean dlb = new detaillocbean();
+                dlb.setName(province);
+                dlb.setPv(pvsum);
+                dlb.setUv(uvsum);
+
+                dlbarray.add(dlb);
+            }
         }
+
+        if(stmt!= null)
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        if(conn!= null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        resJSON = index.equals("BOTH") ? JSONArray.fromObject(dlbarray) : JSONArray.fromObject(lbarray);
         return resJSON;
     }
+
+    public static JSONArray getUsrlocData(String date, String index) {
+        return getSqlData(date, index);
+    }
+    public static JSONArray getDetaillocData(String date) {
+        return getSqlData(date, "BOTH");
+    }
+
     public static void main(String[] args) {
-        System.out.println(getUsrlocData("20170103"));
+        System.out.println(getUsrlocData("20170105","PV"));
     }
 }

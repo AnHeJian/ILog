@@ -31,7 +31,7 @@ public class usrLocServlet extends javax.servlet.http.HttpServlet {
 
 
         //向前台发送数据
-        JSONArray json = UsrlocData.getUsrlocData(date);//接口的参数应该为date和index，都是用户的选择，现在还只写了date。。。
+        JSONArray json = UsrlocData.getUsrlocData(date, index);
         System.out.println(json);
 
         PrintWriter out = response.getWriter();
@@ -42,6 +42,23 @@ public class usrLocServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        response.setContentType("text/html; charset=utf-8");
+        //接收前台数据：
+        String usrinfo=request.getParameter("usrinfo");//例：接收到的usrinfo为："2017-01-01"
+        System.out.println(usrinfo);
+        String [] infosplit = usrinfo.split("\"");
+        String [] infos = infosplit[1].split(",");      //infosplit[1]为: 2017-01-01
+        String [] datesplit = infos[0].split("-");      //infos[0]分割为 2017 01 01
+        String date = datesplit[0]+datesplit[1]+datesplit[2];  //date为20170101
 
+        //向前台发送数据
+        JSONArray json = UsrlocData.getDetaillocData(date);
+
+        System.out.println(json);
+
+        PrintWriter out = response.getWriter();
+        out.println(json);   
+        out.flush();
+        out.close();
     }
 }

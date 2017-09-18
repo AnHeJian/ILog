@@ -12,4 +12,31 @@
         <servlet-name>usrLocServlet</servlet-name>
         <url-pattern>/usrloc.do</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TopPVServlet</servlet-name>
+        <servlet-class>com.ILogDisplay.servlet.TopPVServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopPVServlet</servlet-name>
+        <url-pattern>/top20.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TimeServlet</servlet-name>
+        <servlet-class>com.ILogDisplay.servlet.TimeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TimeServlet</servlet-name>
+        <url-pattern>/timechange.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BrandServlet</servlet-name>
+        <servlet-class>com.ILogDisplay.servlet.BrandServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BrandServlet</servlet-name>
+        <url-pattern>/brand.do</url-pattern>
+    </servlet-mapping>
 </web-app>

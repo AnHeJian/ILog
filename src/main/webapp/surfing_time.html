@@ -316,39 +316,68 @@
             <li class="active" >用户上网时段分布</li>
         </ol>
         <h4 class="page-title">用户上网时段分布</h4>
-        
-        
-
-
-
         <div id="select_clear">
           <form class="form-inline">
            <span class="page-title">时间点：</span>
-           <div class="form-group" id="DateInput">
-               <input type="date" class="form-control " id="singeDate_surfingTime"
+           <div class="form-group" id="DateInput" >
+               <input type="date" class="form-control " id="singeDate_surfingTime" value="2017-01-02"
                required="true" dateISO="true">
            </div> 
            <fieldset>
                <form class="form-inline">
-                  <span class="page-title pull-left">地点：</span>
-                  <dl class="page-title pull-left">
-                    <dd>
-                        省  份：<select class="form-control" id="selProvince" onchange="provinceChange();"></select>
-                    </dd>
-                    <dd>
-                        市(区)：<select class="form-control" id="selCity"></select>
-                    </dd>
-                </dl>
-                <div class="form-group pull-left">  
-                  <button type="button" class="btn  btn-default" id="btn-surfingTime-search" >
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                  <span class="page-title pull-left">地点：省份：
+                  <select name="selProvince" class="form-control" id="selProvince" onChange="provinceChange();">
+                  </select>
+                  城市：
+                  <select name="selCity" class="form-control" id="selCity">
+                  </select>
+                  </span>
+                  <button type="button" class="btn  btn-default" id="btn-Dbrand-search" style="position:absolute; margin-left:-10px; margin-top:10px">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true" onclick="loadDATA()"></span> 查询</button>
+                  <div class="form-group pull-left">
                 </div>
             </form>
         </fieldset>
         
     </form>
 </div>
-
+        <script language="javascript" type="text/javascript">
+            var datas = null;
+            loadDATA();
+            function changeTable() {
+                var oTable = document.getElementById("tableidSurfingTime");
+                //修改单元格内容
+                for(var i=1;i<=23;i++){
+                    oTable.rows[i].cells[2].innerHTML = datas[i-1].PVnum;
+                    oTable.rows[i].cells[3].innerHTML = datas[i-1].UVnum;
+                }
+            }
+            function loadDATA(){
+                var finalprovince;
+                var finalcity;
+                var time=document.getElementById('DateInput').value==null?"2017-01-02":document.getElementById('DateInput').value;
+                finalprovince=document.getElementById('selProvince').value==""?"北京市":document.getElementById('selProvince').value+"省";
+                finalcity=document.getElementById('selCity').value==""?"":document.getElementById('selCity').value+"市";
+                alert(time+" "+finalprovince+" "+finalcity);
+                $.ajax({
+                    type : "post",
+                    async : false, //tong步执行
+                    url : "timechange.do",
+                    data : {"send" : JSON.stringify(time+","+finalprovince+","+finalcity)},
+                    dataType : "json", //返回数据形式为json
+                    success : function(result) {
+                        if(result){
+                            datas = result;
+                            alert(datas[0].PVnum);
+                            changeTable();
+                        }
+                    },
+                    error:function(){
+                        alert("查无数据");
+                    }
+                });
+            }
+        </script>>
 
 <div class="block-area" >
 
@@ -357,26 +386,23 @@
         <div class="col-md-12">
          <table class="table  table-bordered  table-condensed tableid "  id="tableidSurfingTime">
             <tr  style="background-color:#2F4F4F "> 
-
                 <th>时间段</th>
                 <th> 浏览量(PV)</th>
                 <th> 访客数(UV)</th>
-
             </tr>
-            <tr>
-
-                <td>0:00-1:00</td>
-                <td>32</td>
-                <td>22</td>
-            </tr>
-            <tr>
-
-                <td>1:00-2:00</td>
-                <td>52</td>
-                <td>63</td>
-            </tr>
-          
-
+             <script type="text/javascript">
+                 var str = "";
+                 for (var i = 0; i < 24;i++)
+                 {
+                     str += "<tr>";
+                     var v=i+1;
+                     str += "   <td>"+i+":00-"+v+":00"+"</td>";
+                     str += "   <td>"+datas[i].PVnum+"</td>";
+                     str += "   <td>"+datas[i].UVnum+"</td>";
+                     str += "</tr>";
+                 }
+                 document.write(str);
+             </script>
         </table>
     </div>
 </div>

@@ -33,6 +33,7 @@
     <link href="css/generics.css" rel="stylesheet"> 
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
+  
     <style type="text/css">  
         select  
         {  
@@ -133,12 +134,12 @@
 
 
         //根据选中的省份获取对应的城市
-        function setCity(provinec) {
+        function setCity(province) {
             var $city = $("#changeSelCity");
             var proCity, option, modelVal;
 
             //通过省份名称，获取省份对应城市的数组名
-            switch (provinec) {
+            switch (province) {
                 case "北京":
                 proCity = beijing;
                 break;
@@ -293,7 +294,7 @@
          <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
             <li >
-                <a href="surfing_time.html" id='menuurl1'>
+                <a href="surfing_time.html" id='menuurl1'  >
                     <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
                 </a>
             </li>
@@ -324,22 +325,23 @@
           <form class="form-inline">
              <span class="page-title">请选择时间点：</span>
              <div class="form-group" >
-                 <input type="date" class="form-control " id="singleDate-ChangeSurfing"
-                 required="true" dateISO="true">
-             </div> 
+                 <input type="date" class="form-control " id="singleDate-ChangeSurfing" value="2017-01-02"
+                 required="true" dateISO="true">2017-10-10</div>
+             
              <fieldset>
-                 <form class="form-inline">
-                  <span class="page-title pull-left">请选择地点：</span>
-                  <dl class="page-title pull-left">
-                    <dd>
-                        省  份：<select class="form-control" id="changeSelProvince" onchange="provinceChange();"></select>
-                    </dd>
-                    <dd>
-                        市(区)：<select class="form-control" id="changeSelCity"></select>
-                    </dd>
-                </dl>
-                <div class="form-group pull-left">  
-                  <button type="button" class="btn  btn-default" id="btn-changeOfSurfing-search" >
+                                <form class="form-inline">
+                  <h4>
+                  <p><span class="page-title">请选择地点：省份：<span class="form-group">
+                    <select name="changeSelProvince" class="form-control" id="changeSelProvince" onChange="provinceChange();" >
+                    </select>
+                  </span> 市区：
+<select name="changeSelCity" class="form-control" id="changeSelCity">
+            </select>
+                  </span>
+                  </h3>
+                  </p>
+                  <div class="form-group pull-left">  
+                  <button type="button" class="btn  btn-default" id="btn-changeOfSurfing-search" style=" position:absolute;margin-top:-45px; margin-left:420px" >
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
                 </div>
             </form>
@@ -360,9 +362,11 @@
 
           <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
+        var datas=null;
         var myChart = echarts.init(document.getElementById('mainST'),'dark-blue');
-
-        　var option2 = {
+        //alert("1");
+        loadDATA();
+        var option2 = {
             　　　　title : {
                 　　　　text: '用户上网时间',
             　　},
@@ -387,7 +391,7 @@
             　　　　{
                 　　　　　　type : 'category',
                 　　　　　　boundaryGap : false,
-                　　　　　　data : ['周一','周二','周三','周四','周五','周六','周日']
+                　　　　　　data : ['00~01','01~02','02~03','03~04','04~05','05~06','06~07','07~08','08~09','09~10','10~11','11~12','12~13','13~14','14~15','15~16','16~17','17~18','18~19','19~20','20~21','21~22','22~23','23~24'],
             　　　　}
             　　],
             　　yAxis : [
@@ -402,7 +406,7 @@
             　　　　{
                 　　　　　　name:'UV',
                 　　　　　　type:'line',
-                　　　　　　data:[11, 11, 15, 13, 12, 13, 10],
+                　　　　　　data:[datas[0].UVnum,datas[1].UVnum,datas[2].UVnum,datas[3].UVnum,datas[4].UVnum,datas[5].UVnum,datas[6].UVnum,datas[7].UVnum,datas[8].UVnum,datas[9].UVnum,datas[10].UVnum,datas[11].UVnum,datas[12].UVnum,datas[13].UVnum,datas[14].UVnum,datas[15].UVnum,datas[16].UVnum,datas[17].UVnum,datas[18].UVnum,datas[19].UVnum,datas[20].UVnum,datas[21].UVnum,datas[22].UVnum,datas[23].UVnum],
                 　　　　　　markPoint : {
                     　　　　　　　　data : [
                     　　　　　　　　　　{type : 'max', name: '最大值'},
@@ -418,8 +422,9 @@
             　　　　{
                 　　　　　　name:'PV',
                 　　　　　　type:'line',
-                　　　　　　data:[1, -2, 2, 5, 3, 2, 0],
-                　　　　　　markPoint : {
+                    data:[datas[0].PVnum,datas[1].PVnum,datas[2].PVnum,datas[3].PVnum,datas[4].PVnum,datas[5].PVnum,datas[6].PVnum,datas[7].PVnum,datas[8].PVnum,datas[9].PVnum,datas[10].PVnum,datas[11].PVnum,datas[12].PVnum,datas[13].PVnum,datas[14].PVnum,datas[15].PVnum,datas[16].PVnum,datas[17].PVnum,datas[18].PVnum,datas[19].PVnum,datas[20].PVnum,datas[21].PVnum,datas[22].PVnum,datas[23].PVnum],
+
+                    markPoint : {
                     　　　　　　　　data : [
                     　　　　　　　　　　{name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
                     　　　　　　　　]
@@ -433,6 +438,112 @@
             　　]
         };
         myChart.setOption(option2);
+
+        $('#btn-changeOfSurfing-search').click(function(){
+
+            refresh();
+        });
+        function loadDATA(){
+            var finalprovince;
+            var finalcity;
+            var time=document.getElementById('singleDate-ChangeSurfing').value==""?"20170102":document.getElementById('singleDate-ChangeSurfing').value;
+            finalprovince=document.getElementById('changeSelProvince').value==""?"北京市":document.getElementById('changeSelProvince').value+"省";
+            finalcity=document.getElementById('changeSelCity').value==""?"":document.getElementById('changeSelCity').value+"市";
+            //alert(time+" "+finalprovince+" "+finalcity);
+            $.ajax({
+                type : "post",
+                async : false, //tong步执行
+                url : "timechange.do",
+                data : {"send" : JSON.stringify(time+","+finalprovince+","+finalcity)},
+                dataType : "json", //返回数据形式为json
+                success : function(result) {
+                    if(result){
+                        datas = result;
+
+
+                    }
+                },
+                error:function(){
+                    alert("GG");
+                }
+            });
+        }
+        function refresh() {
+
+            loadDATA();
+            var option2 = {
+                title : {
+                    text: '用户上网时间',
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+
+                    data:['UV','PV']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : ['00~01','01~02','02~03','03~04','04~05','05~06','06~07','07~08','08~09','09~10','10~11','11~12','12~13','13~14','14~15','15~16','16~17','17~18','18~19','19~20','20~21','21~22','22~23','23~24'],
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} '
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'UV',
+                        type:'line',
+                        data:[datas[0].UVnum,datas[1].UVnum,datas[2].UVnum,datas[3].UVnum,datas[4].UVnum,datas[5].UVnum,datas[6].UVnum,datas[7].UVnum,datas[8].UVnum,datas[9].UVnum,datas[10].UVnum,datas[11].UVnum,datas[12].UVnum,datas[13].UVnum,datas[14].UVnum,datas[15].UVnum,datas[16].UVnum,datas[17].UVnum,datas[18].UVnum,datas[19].UVnum,datas[20].UVnum,datas[21].UVnum,datas[22].UVnum,datas[23].UVnum],
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'PV',
+                        type:'line',
+                        data:[datas[0].PVnum,datas[1].PVnum,datas[2].PVnum,datas[3].PVnum,datas[4].PVnum,datas[5].PVnum,datas[6].PVnum,datas[7].PVnum,datas[8].PVnum,datas[9].PVnum,datas[10].PVnum,datas[11].PVnum,datas[12].PVnum,datas[13].PVnum,datas[14].PVnum,datas[15].PVnum,datas[16].PVnum,datas[17].PVnum,datas[18].PVnum,datas[19].PVnum,datas[20].PVnum,datas[21].PVnum,datas[22].PVnum,datas[23].PVnum],
+
+                        markPoint : {
+                            data : [
+                                {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option2);
+        }
     </script>
 </div>
 </div>
@@ -462,7 +573,6 @@
 <script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
 <script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
 <script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
-
 <script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
 <script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
 <script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->

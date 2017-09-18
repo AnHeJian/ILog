@@ -60,7 +60,7 @@
     </script>
     <script type="text/javascript" language="javascript">
         //定义数组，存储省份信息
-        var province = ["北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
+        var province = ["全国" , "北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
         "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
         "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
         $(function () {
@@ -88,7 +88,7 @@
             }
 
             //调用change事件，初始城市信息
-            provinceChange();
+            //provinceChange();
         }
 //   //省份选中事件
 //   function provinceChange() {
@@ -123,7 +123,7 @@
          <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
             <li class="active">
-                <a href="brand.html" id='menuurl'>
+                <a href="brand.html" id='menuur'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
@@ -190,7 +190,7 @@
   </dl>
   <div class="form-group pull-right" >  
       <button type="button" class="btn  btn-default" id="btn-brand-search" >
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询</button>
     </div>
 </form>
 </fieldset>
@@ -212,160 +212,353 @@
 <br/><br/><br/>
 </section>
 </section>
+
+
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('mainBR'),'dark-blue');
-    option = {
+
+    global_option = {
         title: {
-            text: '终端统计',
-            subtext: '虚构数据',
+            text: '品牌统计',
+            subtext: '昨天',
             left: 'center'
         },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-        legend: {
-        // orient: 'vertical',
-        // top: 'middle',
-        bottom: 10,
-        left: 'center',
-        data: ['小米', '苹果','华为','三星','oppo']
-    },
-    series : [
-    {
-        type: 'pie',
-        radius : '65%',
-        center: ['50%', '50%'],
-        selectedMode: 'single',
-        data:[
-        {value:154, name: '小米'},
-        {value:535, name: '苹果'},
-        {value:510, name: 'oppo'},
-        {value:634, name: '三星'},
-        {value:735, name: '华为'}
-        ],
-        itemStyle: {
-            emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-        }
-    }
-    ]
-};
-
-
-myChart.on('click', function (param){
-    drawEcharts(echarts)                    
-});
-function drawEcharts(ec){
-    　　drawBar(ec);
-};
-
-function drawBar(ec){
-    option = {
-        title : {
-            text: '型号top5',
-        },
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c}%"
-        },
-        toolbox: {
-            show : true,
-            feature : {
-				 myTool: {
-                show: true,
-                title: '返回',
-                icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
-                onclick: function (){
-                    returnPie()
-                }
-            },
-                mark : {show: true},
-                dataView : {show: true, readOnly: false},				
-                restore :{show: true},
-                saveAsImage : {show: true},
-            }
-        },
-        legend: {
-            data : ['展现','点击','访问','咨询','订单']
-        },
-        calculable : true,
-        series : [
-        {
-            name:'型号top5',
-            type:'funnel',
-            x : '10%',
-            sort : 'decending',
-            itemStyle: {
-                normal: {
-                    // color: 各异,
-                    label: {
-                        position: 'middle'
+        series: [
+            {
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                selectedMode: 'single',
+                data: [],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 }
-            },
-            data:[
-            {value:60, name:'小米1'},
-            {value:40, name:'小米2'},
-            {value:20, name:'小米3'},
-            {value:80, name:'小米4'},
-            {value:100, name:'小米5'}
-            ]
-        }
+            }
         ]
     };
 
 
-myChart.setOption(option,true); //当setOption第二个参数为true时，会阻止数据合并
-}
+    var global_subtext;
+    var global_brandData;
+    var noData = false;
 
-function returnPie(ec){
-    option = {
-        title: {
-            text: '终端统计',
-            subtext: '虚构数据',
-            left: 'center'
-        },
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-        // orient: 'vertical',
-        // top: 'middle',
-        bottom: 10,
-        left: 'center',
-        data: ['小米', '苹果','华为','三星','oppo']
-    },
-    series : [
-    {
-        type: 'pie',
-        radius : '65%',
-        center: ['50%', '50%'],
-        selectedMode: 'single',
-        data:[
-        {value:154, name: '小米'},
-        {value:535, name: '苹果'},
-        {value:510, name: 'oppo'},
-        {value:634, name: '三星'},
-        {value:735, name: '华为'}
-        ],
-        itemStyle: {
-            emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //默认界面，显示昨天的信息
+    loadBrandData();
+    function loadBrandData(){
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "brandQuery",
+                "fixedTime" : "1",
+                "location" : "全国"
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        global_option.series[0].data = result;
+                        global_brandData = result;
+                        global_subtext = '昨天';
+                        noData = false;
+                    }
+                }
             }
-        }
+        });
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
     }
-    ]
-};
-myChart.setOption(option,true); //当setOption第二个参数为true时，会阻止数据合并
-}
-myChart.setOption(option);
+
+    //扇型图点击响应函数
+    myChart.on('click', function (param){
+        drawBar(param)
+    });
+
+    //显示型号top5
+    function drawBar(ec) {
+        option = {
+            title: {text: ec.name + '机型top5'},
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    myTool: {
+                        show: true,
+                        title: '返回',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function () {
+                            returnPie()
+                        }
+                    },
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: false},
+                    saveAsImage: {show: true},
+                }
+            },
+            calculable: true,
+            series: [
+                {
+                    name: '型号top5',
+                    type: 'funnel',
+                    x: '10%',
+                    sort: 'decending',
+                    itemStyle: {
+                        normal: {
+                            // color: 各异,
+                            label: {
+                                position: 'middle'
+                            }
+                        }
+                    },
+                    data: [],
+                }
+            ]
+        };
+
+
+        var startDate = document.getElementById("sTdate1").value;
+        var endDate = document.getElementById("fNdate1").value;
+        var location = document.getElementById("selProvince").value;
+        var fixedTime = "0";
+        if(global_subtext=="昨天")
+            fixedTime = "1";
+        if(global_subtext=="最近7天")
+            fixedTime = "7";
+        if(global_subtext=="最近30天")
+            fixedTime = "30";
+        //alert(fixedTime+"|"+startDate+"|"+endDate+"|"+ec.name);
+
+        $.ajax({
+            type: "get",
+            async: false, //同步执行
+            url: "brand.do",
+            data: {"method": "modelQuery",
+                "fixedTime" : fixedTime,
+                "location" : location,
+                "startDate" : startDate,
+                "endDate" : endDate,
+                "brand" : ec.name
+            },
+            dataType: "json", //返回数据形式为json
+            success: function (result) {
+                if (result) {
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        option.series[0].data = result;
+                        noData = false;
+                    }
+                }
+            }
+        });
+
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
+    }
+
+
+    //默认返回后显示昨天的数据
+    function returnPie(ec) {
+        option = {
+            title: {
+                text: '品牌统计',
+                subtext: global_subtext,
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    data: global_brandData,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
+    }
+
+
+    /*按钮事件响应*/
+    document.getElementById("btn-brand-yesterday").onclick = function(){
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "brandQuery",
+                "fixedTime" : "1",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts,因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        global_option.series[0].data = result;
+                        global_option.title.subtext = "昨天";
+                        global_brandData = result;
+                        global_subtext = "昨天";
+                        noData = false;
+                    }
+                }
+            }
+        });
+
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+    document.getElementById("btn-brand-lastSevDay").onclick = function(){
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "brandQuery",
+                "fixedTime" : "7",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        global_option.series[0].data = result;
+                        global_option.title.subtext = "最近7天";
+                        global_brandData = result;
+                        global_subtext = "最近7天";
+                        noData = false;
+                    }
+                }
+            }
+        });
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+    document.getElementById("btn-brand-lastMonth").onclick = function(){
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "brandQuery",
+                "fixedTime" : "30",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        global_option.series[0].data = result;
+                        global_option.title.subtext = "最近30天";
+                        global_brandData = result;
+                        global_subtext = "最近30天";
+                        noData = false;
+                    }
+                }
+            }
+        });
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+    document.getElementById("btn-brand-search").onclick = function(){
+        var startDate = document.getElementById("sTdate1").value;
+        var endDate = document.getElementById("fNdate1").value;
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "brandQuery",
+                "fixedTime" : "0",
+                "location" : location,
+                "startDate" : startDate,
+                "endDate" : endDate,
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        global_option.series[0].data = result;
+                        global_option.title.subtext = startDate + " 至 " + endDate;
+                        global_brandData = result;
+                        global_subtext = startDate + " 至 " + endDate;
+                        noData = false;
+                    }
+                }
+            }
+        });
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+
 </script>
 
 <!-- Javascript Libraries -->

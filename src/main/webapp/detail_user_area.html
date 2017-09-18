@@ -77,56 +77,113 @@
         </ol>
         <h4 class="page-title">用户活跃度分布图</h4>
 
-        <div >
+        <form class="form-inline" >
+            <div class="pull-left">
+                <span class="page-title">时间：</span>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addTable" id="btn-userarea-today">
+                        今天
+                    </button>
+                    <button type="button" class="btn btn-default" id="btn-userarea-yesterday">
+                        昨天
+                    </button>
+                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-userarea-svn">
+                        最近七天
+                    </button>
+                </div>
+            </div>
 
-        </div>
+            <!-- 日历控件设置初始值value-->
+            <!-- <div class="form-group ">  -->
+            <div class="pull-left" id="DateInput">
+                <input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
+                       required="true" dateISO="true">
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+
+            <!-- </form> -->
+            <div id="select_clear">
+
+                <div class="form-group">
+                    <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                </div>
+            </div>
+        </form>
+
+        <script type="text/javascript">
+
+            var datas = null;
+            loadDATA();
+            function changeTable() {
+                var oTable = document.getElementById("tableid");
+                //修改单元格内容
+                for(var i=1;i<=34;i++){
+                    oTable.rows[i].cells[2].innerHTML = datas[i-1].pv;
+                    oTable.rows[i].cells[3].innerHTML = datas[i-1].uv;
+                }
+            }
+            function loadDATA(){
+                //获取用户选择
+                var date = document.getElementById('singleDate_usersrea').value;
+
+                $.ajax({
+                    type : "get",
+                    async : false, //同步执行
+                    url : "usrloc.do",
+                    data : {
+                        "usrinfo" : JSON.stringify(date)//将用户选择传递给后台，其中usrinfo相当于传递的数据的id，
+                        //后台根据这个id来获得数据
+                    },
+                    dataType : "json", //返回数据形式为json
+                    success : function(result) {
+                        if(result){
+                            datas = result;
+                            //alert(result[0].pv);
+                            changeTable();
+                        }
+                    },
+                    error:function(){
+                    alert("查无数据");
+                }
+            });
+            }
+
+
+        </script>
 
         <div class="block-area">
 
             <div class="row">
                 <!-- World Map -->
                 <div class="col-md-12">
+
                  <table class="table  table-bordered  table-condensed tableid "  id="tableid">
-                    <tr  style="background-color:#2F4F4F "> 
+                    <tr  style="background-color:#2F4F4F ">
                         <th></th>
                         <th> 地域</th>
                         <th> 浏览量(PV)</th>
                         <th> 访客数(UV)</th>
+                    </tr>
+                     <script type="text/javascript">
+                         var str = "";
+                         for (var i = 0; i < 34;i++)
+                         {
+                             str += "<tr>";
+                             str += "   <td><i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i></td>";
+                             str += "   <td>"+datas[i].name+"</td>";
+                             str += "   <td>"+datas[i].pv+"</td>";
+                             str += "   <td>"+datas[i].uv+"</td>";
+                             str += "</tr>";
+                         }
+                         document.write(str);
+                     </script>
+                 </table>
 
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-line-chart" aria-hidden="true"></i></td>
-                        <td>江苏</td>
-                        <td>32</td>
-                        <td>22</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-line-chart" aria-hidden="true"></i></td>
-                        <td>北京</td>
-                        <td>52</td>
-                        <td>63</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-line-chart" aria-hidden="true"></i></td>
-                        <td>上海</td>
-                        <td>40</td>
-                        <td>22</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-line-chart" aria-hidden="true"></i></td>
-                        <td>天津</td>
-                        <td>22</td>
-                        <td>22</td>
-                    </tr>
-
-
-                </table>
-
-            </div>
+                </div>
+             </div>
         </div>
-    </div>
-
-
 
     <hr class="whiter m-t-20 m-b-20" />
 
