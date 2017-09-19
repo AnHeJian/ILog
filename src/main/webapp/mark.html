@@ -8,7 +8,7 @@
     <meta name="description" content="Violate Responsive Admin Template">
     <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
-     <title>用户活跃区域分析</title>
+    <title>用户活跃区域分析</title>
 
     <!--引入ECharts-->
     <script src="js/echarts/echarts.min.js"></script>
@@ -16,7 +16,7 @@
     <!--  -->
     <script src="js/echarts/echarts-wordcloud.js"></script>
     <script src="js/echarts/dark.js"></script>
-    <script src="js/echarts/dark-blue.js"></script>
+    <script src="js/echarts/dark.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -32,10 +32,10 @@
     <link href="css/menu.css" rel="stylesheet">
 </head>
 
-<body id="skin-blur-blue">
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
- <a class="logo pull-left" href="index.html">用户活跃度分析</a>
+        <a class="logo pull-left" href="index.html">用户活跃度分析</a>
 
 
     </header>
@@ -47,101 +47,189 @@
         <!-- Sidebar -->
         <aside id="sidebar">
 
-           <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+           <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px">
 
-            <li >
-                <a href="user_area.html" id='menuurl'>
-                    <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="detail_user_area.html"  id='menuurl'>
-                    <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
-                </a>
-            </li>
-
-        </ul>
-
-    </aside>
-    <!-- Content -->
-    <section id="content" class="container">
+               <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+               <li class="active cb1" id="userarea1">
+                <a href="user_area.html" id='menuurl1'>
+                  <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+              </a>
+          </li>
+          <li class="active cb1" id="userarea2">
+            <a href="detail_user_area.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+          </a>
+      </li>
 
 
+      <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+      <li class="active cb2">
+        <a href="brand.html" id='menuurl1'>
+          <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+      </a>
+  </li>
+  <li class="active cb2">
+    <a href="detail_brand.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+  </a>
+</li>
 
-        <!-- Breadcrumb -->
-       <ol class="breadcrumb hidden-xs">
-            <li><a href="index.html">首页</a></li>
-            <li class="active">详细信息</li>
-        </ol>
-		<h4 class="page-title">用户活跃度分布图</h4>
-        <div class="col-md-12" >
-            <div id="mainUPS" style="width: 100%;height:600px;"></div>
 
-        </div>
+<li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+<li class="active cb3">
+    <a href="surfing_time.html" id='menuurl1'  >
+      <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+  </a>
+</li>
+<li class="active cb3">
+    <a href="changeOfSurfingTime.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+  </a>
+</li>
 
-        <br/><br/><br/>
-    </section>
+
+
+<li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+<li class="active cb4" >
+    <a href="user_pic_shopping.html" id='menuurl1'>
+      <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+  </a>
+</li>
+<li class="active cb4">
+    <a href="user_pic.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+  </a>
+</li>
+
+
+
+<li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+<li  class="active cb5">
+    <a href="topPV.html"  id='menuurl1'>
+      <i class="fa fa-bar-chart-o "></i><span> PV</span>
+  </a>
+</li>
+<li class="active cb5" >
+    <a href="topUV.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+  </a>
+</li>
+
+
+</ul>
+
+</aside>
+<!-- Content -->
+<section id="content" class="container">
+
+
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">详细信息</li>
+    </ol>
+    <h4 class="page-title">用户活跃度分布图</h4>
+    <div class="col-md-12" >
+        <div id="mainUPS" style="width: 100%;height:600px;"></div>
+
+    </div>
+
+    <br/><br/><br/>
+</section>
 </section>
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainUPS'),'dark-blue');
+        var myChart = echarts.init(document.getElementById('mainUPS'),'dark');
         var option = {
-    title: {
-        text: '详细信息',
+           backgroundColor:'#transparent',
+           title: {
+            text: '详细信息',
 
-    },
-    toolbox: {
-        show: true,
-        feature: {
-            dataView:{
-                show:true
-            },
-            restore:{
-                show:true
-            },
-            dataZoom:{
-                show:true
-            },
-            saveAsImage: {
-                show: true
-            },
-            magicType: {
-                type: ['line', 'bar']
-            }
-        }
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['PV']
-    },
-    xAxis: {
-        data: ["2017-01-01","2017-01-02", "2017-01-03", "2017-01-04", "2017-01-05", "2017-01-06", "2017-01-07"]
-    },
-    yAxis: {},
-    series: [{
-        name: 'PV',
-        type: 'line',
-        data: [5, 30, 20, 36, 10, 10, 20],
-        markPoint: {
-            data: [
-            {type: 'max', name: '最大值'},
-            {type: 'min', name: '最小值',symbol:'arrow'}
-            ]
         },
-        markLine: {
-            data: [
-            {type: 'average', name: '平均值'}
-            ]
-        }
-    }]
-};
+        toolbox: {
+            show: true,
+            feature: {
+                dataView:{
+                    show:true
+                },
+                restore:{
+                    show:true
+                },
+                dataZoom:{
+                    show:true
+                },
+                saveAsImage: {
+                    show: true
+                },
+                magicType: {
+                    type: ['line', 'bar']
+                }
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['PV']
+        },
+        xAxis: {
+            data: ["2017-01-01","2017-01-02", "2017-01-03", "2017-01-04", "2017-01-05", "2017-01-06", "2017-01-07"]
+        },
+        yAxis: {},
+        series: [{
+            name: 'PV',
+            type: 'line',
+            data: [5, 30, 20, 36, 10, 10, 20],
+            markPoint: {
+                data: [
+                {type: 'max', name: '最大值'},
+                {type: 'min', name: '最小值',symbol:'arrow'}
+                ]
+            },
+            markLine: {
+                data: [
+                {type: 'average', name: '平均值'}
+                ]
+            }
+        }]
+    };
 
-        myChart.setOption(option);
-        window.onresize = myChart.resize;
-    </script>
+    myChart.setOption(option);
+    window.onresize = myChart.resize;
+</script>
+<script>
+    $(document).ready(function() {
+        $("#DateInput").css("width","30%");
+        $('#selProvince').css("width","100px")
+
+        $('#dd').css("margin-left","0px")
+
+        $(".cb1").css("display","none");
+        $("#userarea").click(function(){
+            $(".cb1").toggle();
+        })
+        $(".cb2").css("display","none");
+        $("#brand").click(function(){
+            $(".cb2").toggle();
+        })
+        $(".cb3").css("display","none");
+        $("#surfingTime").click(function(){
+            $(".cb3").toggle();
+        })
+        $(".cb4").css("display","none");
+        $("#userpic").click(function(){
+            $(".cb4").toggle();
+        })
+        $(".cb5").css("display","none");
+        $("#top20").click(function(){
+            $(".cb5").toggle();
+        })
+
+    });
+</script>
+
 
 
 </body>

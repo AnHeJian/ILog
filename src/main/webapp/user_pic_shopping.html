@@ -1,66 +1,124 @@
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <meta name="format-detection" content="telephone=no">
-    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
 
-    <meta name="description" content="Violate Responsive Admin Template">
-    <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+  <meta name="description" content="Violate Responsive Admin Template">
+  <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
-    <title>用户消费习惯分析</title>
+  <title>用户消费习惯分析</title>
 
-    <!--引入ECharts-->
-    <script src="js/echarts/echarts.min.js"></script>
-    <script src="js/echarts/china.js"></script>
-    <!--  -->
-    <script src="js/echarts/echarts-wordcloud.js"></script>
-    <script src="js/echarts/dark.js"></script>
-    <script src="js/echarts/dark-blue.js"></script>
+  <!--引入ECharts-->
+  <script src="js/echarts/echarts.min.js"></script>
+  <script src="js/echarts/china.js"></script>
+  <!--  -->
+  <script src="js/echarts/echarts-wordcloud.js"></script>
+  <script src="js/echarts/dark.js"></script>
+  <script src="js/echarts/dark-blue.js"></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="js/font-awesome.4.6.0.css">
-    <link href="css/form.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
-    <link href="css/media-player.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/icons.css" rel="stylesheet">
-    <link href="css/generics.css" rel="stylesheet"> 
-    <link href="css/mstp_map.css" rel="stylesheet"> 
-    <link href="css/menu.css" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="js/font-awesome.4.6.0.css">
+  <link href="css/form.css" rel="stylesheet">
+  <link href="css/calendar.css" rel="stylesheet">
+  <link href="css/media-player.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/icons.css" rel="stylesheet">
+  <link href="css/generics.css" rel="stylesheet"> 
+  <link href="css/mstp_map.css" rel="stylesheet"> 
+  <link href="css/menu.css" rel="stylesheet">
+  <link href="css/sidebar.css" rel="stylesheet">
 </head>
 
-<body id="skin-blur-blue">
-    <header id="header" class="media">
-        <a href="" id="menu-toggle"></a> 
-        <a class="logo pull-left" href="index.html">用户消费分析</a>
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
+  <header id="header" class="media">
+    <a href="" id="menu-toggle"></a> 
+    <a class="logo pull-left" href="index.html">用户消费分析</a>
 
 
-    </header>
+  </header>
 
-    <div class="clearfix"></div>
+  <div class="clearfix"></div>
 
-    <section id="main" class="p-relative" role="main">
+  <section id="main" class="p-relative" role="main">
 
-        <!-- Sidebar -->
-        <aside id="sidebar">
+    <!-- Sidebar -->
+    <aside id="sidebar">
 
-           <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+      <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li  class="active">
-                <a href="user_pic_shopping.html" id='menuurl'>
-                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
-                </a>
-            </li>
-            <li>
-                <a href="user_pic.html"  id='menuurl'>
-                    <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
-                </a>
-            </li>
+        <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+        <li class="active cb1" id="userarea1">
+          <a href="user_area.html" id='menuurl1'>
+            <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+          </a>
+        </li>
+        <li class="active cb1" id="userarea2">
+          <a href="detail_user_area.html"  id='menuurl2'>
+            <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+          </a>
+        </li>
 
-        </ul>
+
+        <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+        <li class="active cb2">
+          <a href="brand.html" id='menuurl1'>
+            <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+          </a>
+        </li>
+        <li class="active cb2">
+          <a href="detail_brand.html"  id='menuurl2'>
+            <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+          </a>
+        </li>
+
+
+        <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+        <li class="active cb3">
+          <a href="surfing_time.html" id='menuurl1'  >
+            <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+          </a>
+        </li>
+        <li class="active cb3">
+          <a href="changeOfSurfingTime.html"  id='menuurl2'>
+            <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+          </a>
+        </li>
+
+
+
+        <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+
+        <li class=" cb4">
+          <a href="user_pic.html"  id='menuurl2'>
+            <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+          </a>
+        </li>
+        <li class="active cb4" >
+          <a href="user_pic_shopping.html" id='menuurl1'>
+            <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+          </a>
+        </li>
+
+
+
+        <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+        <li  class="active cb5">
+          <a href="topPV.html"  id='menuurl1'>
+            <i class="fa fa-bar-chart-o "></i><span> PV</span>
+          </a>
+        </li>
+        <li class="active cb5" >
+          <a href="topUV.html"  id='menuurl2'>
+            <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+          </a>
+        </li>
+
+
+      </ul>
 
     </aside>
 
@@ -69,71 +127,102 @@
 
 
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb hidden-xs">
-            <li><a href="index.html">首页</a></li>
-            <li class="active">用户消费分析</li>
-        </ol>
-        <h4 class="page-title">用户消费分析</h4>
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb hidden-xs">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">用户消费分析</li>
+      </ol>
+      <h4 class="page-title">用户消费分析</h4>
 
-        <div class="col-md-12" >
-            <div id="mainUPS" style="width: 100%;height:600px;"></div>
+      <div class="col-md-12" >
+        <div id="mainUPS" style="width: 100%;height:600px;"></div>
 
-        </div>
+      </div>
 
-        <br/><br/><br/>
+      <br/><br/><br/>
     </section>
-</section>
+  </section>
 
-<script type="text/javascript">
+  <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('mainUPS'),'dark-blue');
         option = {
-            title : {
-                text: '用户消费分析',
-                subtext: '纯属虚构',
-                x:'center'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ['饮食','衣着','电子产品','文具','影视']
-            },
-            series : [
-            {
-                name: '访问来源',
-                type: 'pie',
-                radius : '55%',
-                center: ['50%', '60%'],
-                data:[
-                {value:335, name:'饮食'},
-                {value:310, name:'衣着'},
-                {value:234, name:'电子产品'},
-                {value:135, name:'文具'},
-                {value:1548, name:'影视'}
-                ],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
+         backgroundColor:'#transparent',
+         title : {
+          text: '用户消费分析',
+          subtext: '纯属虚构',
+          x:'center'
+        },
+        tooltip : {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['饮食','衣着','电子产品','文具','影视']
+        },
+        series : [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius : '55%',
+          center: ['50%', '60%'],
+          data:[
+          {value:335, name:'饮食'},
+          {value:310, name:'衣着'},
+          {value:234, name:'电子产品'},
+          {value:135, name:'文具'},
+          {value:1548, name:'影视'}
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-            ]
-        };
+          }
+        }
+        ]
+      };
 
-        myChart.setOption(option);
-        window.onresize = myChart.resize;
+      myChart.setOption(option);
+      window.onresize = myChart.resize;
+    </script>
+    <script>
+      $(document).ready(function() {
+        $("#DateInput").css("width","30%");
+        $('#selProvince').css("width","100px")
+
+        $('#dd').css("margin-left","0px")
+
+        $(".cb1").css("display","none");
+        $("#userarea").click(function(){
+          $(".cb1").toggle();
+        })
+        $(".cb2").css("display","none");
+        $("#brand").click(function(){
+          $(".cb2").toggle();
+        })
+        $(".cb3").css("display","none");
+        $("#surfingTime").click(function(){
+          $(".cb3").toggle();
+        })
+        $(".cb4").css("display","none");
+        $("#userpic").click(function(){
+          $(".cb4").toggle();
+        })
+        $(".cb5").css("display","none");
+        $("#top20").click(function(){
+          $(".cb5").toggle();
+        })
+
+      });
     </script>
 
 
-</body>
-</html>
+  </body>
+  </html>
 
 
 

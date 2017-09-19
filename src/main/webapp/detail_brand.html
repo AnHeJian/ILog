@@ -17,7 +17,7 @@
   
   <script src="js/echarts/echarts.min.js"></script>
   <script src="js/echarts/china.js"></script>
-  <script src="js/echarts/dark-blue.js"></script>
+  <script src="js/echarts/dark.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -31,6 +31,8 @@
   <link href="css/generics.css" rel="stylesheet"> 
   <link href="css/mstp_map.css" rel="stylesheet"> 
   <link href="css/menu.css" rel="stylesheet">
+  <link href="css/sidebar.css" rel="stylesheet">
+
   <style type="text/css">  
     select  
     {  
@@ -104,7 +106,7 @@
       </script>
     </head>
 
-    <body id="skin-blur-blue">
+    <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
       <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">用户终端品牌变化</a>
@@ -121,16 +123,73 @@
 
          <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-          <li >
-            <a href="brand.html" id='menuurl'>
+           <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+           <li class="active cb1" id="userarea1">
+            <a href="user_area.html" id='menuurl1'>
+              <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+            </a>
+          </li>
+          <li class="active cb1" id="userarea2">
+            <a href="detail_user_area.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+            </a>
+          </li>
+
+
+          <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+          <li class=" cb2">
+            <a href="brand.html" id='menuurl1'>
               <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
             </a>
           </li>
-          <li class="active">
-            <a href="detail_brand.html"  id='menuurl'>
+          <li class="active cb2">
+            <a href="detail_brand.html"  id='menuurl2'>
               <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
             </a>
           </li>
+
+
+          <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+          <li class="active cb3">
+            <a href="surfing_time.html" id='menuurl1'  >
+              <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+            </a>
+          </li>
+          <li class="active cb3">
+            <a href="changeOfSurfingTime.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+            </a>
+          </li>
+
+
+
+          <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+          <li class="active cb4" >
+            <a href="user_pic_shopping.html" id='menuurl1'>
+              <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+            </a>
+          </li>
+          <li class="active cb4">
+            <a href="user_pic.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+            </a>
+          </li>
+
+
+
+          <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+          <li  class="active cb5">
+            <a href="topPV.html"  id='menuurl1'>
+              <i class="fa fa-bar-chart-o "></i><span> PV</span>
+            </a>
+          </li>
+          <li class="active cb5" >
+            <a href="topUV.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+            </a>
+          </li>
+
+
 
         </ul>
 
@@ -152,10 +211,10 @@
         <div class="pull-left">
           <span class="page-title">时间：</span>
           <div class="btn-group">
-            <button type="button" class="btn btn-default "  id="btn-Dbrand-lastSvn">
+            <button type="button" class="btn btn-default "  id="btn-Dbrand-lastSvn" style="background-color: #66FFFF">
               最近7天
             </button>
-            <button type="button" class="btn btn-default" id="btn-Dbrand-lastMonth">
+            <button type="button" class="btn btn-default" id="btn-Dbrand-lastMonth" style="background-color: #66FFFF">
               最近30天
             </button>
 
@@ -165,12 +224,12 @@
         <span class="page-title pull-left">起始时间：</span>             
         <div class="pull-left">
          <input type="date" class="form-control " id="sTdate2"
-         required="true" dateISO="true">
+         required="true" dateISO="true" value="2017-01-05">
        </div>
        <span class="page-title pull-left">终止时间：</span>             
        <div class="pull-left" >
          <input type="date" class="form-control " id="fNdate2"
-         required="true" dateISO="true">
+         required="true" dateISO="true" value="2017-01-05">
        </div>
        <fieldset>
          <form class="form-inline">
@@ -181,8 +240,8 @@
             </dd>
           </dl>
           <div class="form-group pull-right">  
-            <button type="button" class="btn  btn-default" id="btn-Dbrand-search" >
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+            <button type="button" class="btn  btn-default" id="btn-Dbrand-search" style="position:absolute; margin-left:-100px; background-color: #66FFFF">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
             </div>
           </form>
         </fieldset>
@@ -190,132 +249,163 @@
 
 
 
-          <div class="block-area">
+        <div class="block-area">
 
-            <div class="row">
-              <!-- World Map -->
-              <div class="col-md-12">
-               <div id="mainBRD" style="width: 100%;height:600px;"></div>
-             </div>
+          <div class="row">
+            <!-- World Map -->
+            <div class="col-md-12">
+             <div id="mainBRD" style="width: 100%;height:600px;"></div>
            </div>
          </div>
+       </div>
 
 
 
-         <hr class="whiter m-t-20 m-b-20" />
+       <hr class="whiter m-t-20 m-b-20" />
 
-         <br/><br/><br/>
-       </section>
+       <br/><br/><br/>
      </section>
-     <script type="text/javascript">
+   </section>
+   <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainBRD'),'dark-blue');
+        var myChart = echarts.init(document.getElementById('mainBRD'),'dark');
         option = {
-          title: {
-            text: '终端品牌变化情况'
-          },
-          tooltip: {
-            trigger: 'axis'
-          },
-          legend: {
-            data:['小米','苹果','华为','三星','OPPO']
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-          },
-          toolbox: {
-            feature: {
-              saveAsImage: {}
-            }
-          },
-          xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['周一','周二','周三','周四','周五','周六','周日']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [
-          {
-            name:'小米',
-            type:'line',
-            stack: '总量',
-            data:[120, 132, 101, 134, 90, 230, 210]
-          },
-          {
-            name:'苹果',
-            type:'line',
-            stack: '总量',
-            data:[220, 182, 191, 234, 290, 330, 310]
-          },
-          {
-            name:'华为',
-            type:'line',
-            stack: '总量',
-            data:[150, 232, 201, 154, 190, 330, 410]
-          },
-          {
-            name:'三星',
-            type:'line',
-            stack: '总量',
-            data:[320, 332, 301, 334, 390, 330, 320]
-          },
-          {
-            name:'OPPO',
-            type:'line',
-            stack: '总量',
-            data:[820, 932, 901, 934, 1290, 1330, 1320]
+         backgroundColor:'#transparent',
+         title: {
+          text: 'Issues解决率趋势分析',
+          subtext: '纯属虚构'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data:['最高气温','最低气温']
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            dataZoom: {},
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
           }
-          ]
-        };
-        myChart.setOption(option);
-        window.onresize = myChart.resize;
-      </script>
+        },
+        xAxis:  {
+          type: 'category',
+          boundaryGap: false,
+          data: ['6/1','6/4','6/7','6/10','6/13','6/16','6/19','6/21','6/24','6/27','6/30','7/2','7/5','7/8','7/11']
+        },
+        yAxis: {
+          type: 'value',
+          axisLabel: {
+            formatter: '{value}'
+          }
+        },
+        series: [
+        {
+          name:'月度解决率',
+          type:'line',
+          data:[92, 96, 99, 91, 96, 103, 100,92, 96, 99, 91, 96, 103, 100,115],
+          markPoint: {
+            data: [
+            {type: 'max', name: '最大值'},
+            {type: 'min', name: '最小值'}
+            ]
+          },
+          markLine: {
+            data: [
+            {type: 'average', name: '平均值'}
+            ]
+          }
+        },
+        {
+          name:'累计解决率',
+          type:'line',
+          data:[81, 90, 96, 81, 86, 93, 90,81, 90, 96, 81, 86, 93, 90,100],
+          markPoint: {
+            data: [
+            {type: 'max', name: '最大值'},
+            {type: 'min', name: '最小值'}
+            ]
+          },
+          markLine: {
+            data: [
+            {type: 'average', name: '平均值'}
+            ]
+          }
+        }
+        ]
+      };
+      myChart.setOption(option);
+      window.onresize = myChart.resize;
+    </script>
 
-      <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
 
-      <!-- Bootstrap -->
-      <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
 
-      <!--引入ECharts-->
-      <script src="js/echarts/echarts.min.js"></script>
-      <script src="js/echarts/china.js"></script>
-      <!-- Charts -->
-      <script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
-      <script src="js/charts/jquery.flot.time.js"></script> <!-- Flot sub -->
-      <script src="js/charts/jquery.flot.animator.min.js"></script> <!-- Flot sub -->
-      <script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
-      <script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
-      <script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
+    <!--引入ECharts-->
+    <script src="js/echarts/echarts.min.js"></script>
+    <script src="js/echarts/china.js"></script>
+    <!-- Charts -->
+    <script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
+    <script src="js/charts/jquery.flot.time.js"></script> <!-- Flot sub -->
+    <script src="js/charts/jquery.flot.animator.min.js"></script> <!-- Flot sub -->
+    <script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
+    <script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
+    <script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
 
-      <script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
-      <script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
-      <script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->
+    <script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
+    <script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
+    <script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->
 
-      <!-- Map -->
-      <script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
-      <!--Media Player-->
-      <script src="js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
+    <!-- Map -->
+    <script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
+    <!--Media Player-->
+    <script src="js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
 
-      <!-- UX -->
-      <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+    <!-- UX -->
+    <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
 
-      <!-- Other -->
-      <script src="js/calendar.min.js"></script> <!-- Calendar -->
-      <script src="js/feeds.min.js"></script> <!-- News Feeds -->
+    <!-- Other -->
+    <script src="js/calendar.min.js"></script> <!-- Calendar -->
+    <script src="js/feeds.min.js"></script> <!-- News Feeds -->
 
 
-      <!-- All JS functions -->
-      <script src="js/functions.js"></script>
+    <!-- All JS functions -->
+    <script src="js/functions.js"></script>
 
-      <script>
-        $(document).ready(function() {
+    <script>
+      $(document).ready(function() {
           // $("#DateInput").css("width","16%");
           //$("#userareaKind").css("width","100px")
+          ///////////////////
+          $('#selProvince').css("width","100px")
+
+          $('#dd').css("margin-left","0px")
+
+          $(".cb1").css("display","none");
+          $("#userarea").click(function(){
+            $(".cb1").toggle();
+          })
+          $(".cb2").css("display","none");
+          $("#brand").click(function(){
+            $(".cb2").toggle();
+          })
+          $(".cb3").css("display","none");
+          $("#surfingTime").click(function(){
+            $(".cb3").toggle();
+          })
+          $(".cb4").css("display","none");
+          $("#userpic").click(function(){
+            $(".cb4").toggle();
+          })
+          $(".cb5").css("display","none");
+          $("#top20").click(function(){
+            $(".cb5").toggle();
+          })
         });
 
       </script>

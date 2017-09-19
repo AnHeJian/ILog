@@ -32,9 +32,11 @@
     <link href="css/generics.css" rel="stylesheet"> 
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+
 </head>
 
-<body id="skin-blur-blue">
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">用户活跃度分析</a>
@@ -51,16 +53,72 @@
 
            <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li >
-                <a href="user_area.html" id='menuurl'>
+               <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+               <li class=" cb1" id="userarea1">
+                <a href="user_area.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="detail_user_area.html"  id='menuurl'>
+            <li class="active cb1" id="userarea2">
+                <a href="detail_user_area.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
                 </a>
             </li>
+
+
+            <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+            <li class="active cb2">
+                <a href="brand.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+                </a>
+            </li>
+            <li class="active cb2">
+                <a href="detail_brand.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+                </a>
+            </li>
+
+
+            <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+            <li class="active cb3">
+                <a href="surfing_time.html" id='menuurl1'  >
+                    <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+                </a>
+            </li>
+            <li class="active cb3">
+                <a href="changeOfSurfingTime.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+                </a>
+            </li>
+
+
+
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+            <li class="active cb4" >
+                <a href="user_pic_shopping.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+                </a>
+            </li>
+            <li class="active cb4">
+                <a href="user_pic.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+                </a>
+            </li>
+
+
+
+            <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+            <li  class="active cb5">
+                <a href="topPV.html"  id='menuurl1'>
+                    <i class="fa fa-bar-chart-o "></i><span> PV</span>
+                </a>
+            </li>
+            <li class="active cb5" >
+                <a href="topUV.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+                </a>
+            </li>
+
 
         </ul>
 
@@ -81,13 +139,13 @@
             <div class="pull-left">
                 <span class="page-title">时间：</span>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addTable" id="btn-userarea-today">
+                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addTable" id="btn-userarea-today" style="background-color: #66FFFF">
                         今天
                     </button>
-                    <button type="button" class="btn btn-default" id="btn-userarea-yesterday">
+                    <button type="button" class="btn btn-default" id="btn-userarea-yesterday" style="background-color: #66FFFF">
                         昨天
                     </button>
-                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-userarea-svn">
+                    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-userarea-svn" style="background-color: #66FFFF">
                         最近七天
                     </button>
                 </div>
@@ -95,29 +153,32 @@
 
             <!-- 日历控件设置初始值value-->
             <!-- <div class="form-group ">  -->
-            <div class="pull-left" id="DateInput">
-                <input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
-                       required="true" dateISO="true">
-            </div>
-            <!-- </div> -->
-            <!-- </div> -->
-
-            <!-- </form> -->
             <div id="select_clear">
-
-                <div class="form-group">
-                    <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                <div class="pull-left" id="DateInput" >
+                    <input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
+                    required="true" dateISO="true">
                 </div>
+                <!-- </div> -->
+                <!-- </div> -->
+
+                <!-- </form> -->
+           <!--  <div id="select_clear">
+       -->   </form>
+       <!-- <div class="form-group pull-left">
+        <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()" style="background-color: #66FFFF">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+        </div> -->
+        <div class="form-group">
+            <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()" style="background-color: #66FFFF">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
             </div>
-        </form>
 
-        <script type="text/javascript">
+            <script type="text/javascript">
 
-            var datas = null;
-            loadDATA();
-            function changeTable() {
-                var oTable = document.getElementById("tableid");
+                var datas = null;
+                loadDATA();
+                function changeTable() {
+                    var oTable = document.getElementById("tableid");
                 //修改单元格内容
                 for(var i=1;i<=34;i++){
                     oTable.rows[i].cells[2].innerHTML = datas[i-1].pv;
@@ -145,9 +206,9 @@
                         }
                     },
                     error:function(){
-                    alert("查无数据");
-                }
-            });
+                        alert("查无数据");
+                    }
+                });
             }
 
 
@@ -166,28 +227,28 @@
                         <th> 浏览量(PV)</th>
                         <th> 访客数(UV)</th>
                     </tr>
-                     <script type="text/javascript">
-                         var str = "";
-                         for (var i = 0; i < 34;i++)
-                         {
-                             str += "<tr>";
-                             str += "   <td><i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i></td>";
-                             str += "   <td>"+datas[i].name+"</td>";
-                             str += "   <td>"+datas[i].pv+"</td>";
-                             str += "   <td>"+datas[i].uv+"</td>";
-                             str += "</tr>";
-                         }
-                         document.write(str);
-                     </script>
-                 </table>
+                    <script type="text/javascript">
+                     var str = "";
+                     for (var i = 0; i < 34;i++)
+                     {
+                         str += "<tr>";
+                         str += "   <td><i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i></td>";
+                         str += "   <td>"+datas[i].name+"</td>";
+                         str += "   <td>"+datas[i].pv+"</td>";
+                         str += "   <td>"+datas[i].uv+"</td>";
+                         str += "</tr>";
+                     }
+                     document.write(str);
+                 </script>
+             </table>
 
-                </div>
-             </div>
-        </div>
+         </div>
+     </div>
+ </div>
 
-    <hr class="whiter m-t-20 m-b-20" />
+ <hr class="whiter m-t-20 m-b-20" />
 
-    <br/><br/><br/>
+ <br/><br/><br/>
 </section>
 </section>
 
@@ -228,20 +289,34 @@
 <script src="js/functions.js"></script>
 <script>
     $(document).ready(function() {
-    // var a;
-    
-    $("tr").click(function() {
-        window.location.href = "mark.html";
-
-
-       //  var a = $(this).text();
-
-       //      // console.log($(this).parent())
-       //      // console.log($(this).parent().parent())
-       //      // console.log($(this).parent().eq(1).text())
-       // alert(a);
-   });
-});
+       
+        $("#DateInput").css("width","16%");
+        $("#userareaKind").css("width","100px");
+        //////////////////////////////////////////
+        $(".cb1").css("display","none");
+        $("#userarea").click(function(){
+            $(".cb1").toggle();
+        })
+        $(".cb2").css("display","none");
+        $("#brand").click(function(){
+            $(".cb2").toggle();
+        })
+        $(".cb3").css("display","none");
+        $("#surfingTime").click(function(){
+            $(".cb3").toggle();
+        })
+        $(".cb4").css("display","none");
+        $("#userpic").click(function(){
+            $(".cb4").toggle();
+        })
+        $(".cb5").css("display","none");
+        $("#top20").click(function(){
+            $(".cb5").toggle();
+        })
+        $("tr").click(function() {
+            window.location.href = "mark.html";
+        });
+    });
 
 </script>
 </body>

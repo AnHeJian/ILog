@@ -15,7 +15,7 @@
     <!--引入ECharts-->
     <script src="js/echarts/echarts.min.js"></script>
     <script src="js/echarts/china.js"></script>
-    <script src="js/echarts/dark-blue.js"></script>
+    <script src="js/echarts/dark.js"></script>
     
     <title>热门网站PV top20分析</title>
 
@@ -35,9 +35,10 @@
     <link href="css/generics.css" rel="stylesheet"> 
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
 </head>
 
-<body id="skin-blur-blue">
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">热门网站TOP20</a>
@@ -52,42 +53,108 @@
         <!-- Sidebar -->
         <aside id="sidebar">
 
-         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
-            <li  class="active">
-                <a href="topPV.html"  id='menuurl'>
-                    <i class="fa fa-bar-chart-o "></i><span> PV</span>
-                </a>
-            </li>
-            <li >
-                <a href="topUV.html"  id='menuurl'>
-                    <i class="fa fa-sort-amount-asc"></i><span> UV</span>
-                </a>
-            </li>
-
-        </ul>
-
-    </aside>
-    <!-- Content -->
-    <section id="content" class="container">
-
-
-
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb hidden-xs">
-            <li><a href="index.html">首页</a></li>
-            <li class="active">热门网站PV-TOP20</li>
-        </ol>
-        <h4 class="page-title">PV-TOP20</h4>
+            <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+                <!-- <li  class="active">
+                    <a href="topPV.html"  id='menuurl1'>
+                        <i class="fa fa-bar-chart-o "></i><span> PV</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="topUV.html"  id='menuurl2'>
+                        <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+                    </a>
+                </li> -->
+                <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+                <li class="active cb1" id="userarea1">
+                    <a href="user_area.html" id='menuurl1'>
+                      <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+                  </a>
+              </li>
+              <li class="active cb1" id="userarea2">
+                <a href="detail_user_area.html"  id='menuurl2'>
+                  <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+              </a>
+          </li>
 
 
-        <span class="page-title pull-left">时间：</span>             
-        <div class="pull-left" >
-            <input type="date" class="form-control " id="sTdateTopPV" value="2017-01-05"
-            required="true" dateISO="true">
-        </div>
+          <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+          <li class="active cb2">
+            <a href="brand.html" id='menuurl1'>
+              <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+          </a>
+      </li>
+      <li class="active cb2">
+        <a href="detail_brand.html"  id='menuurl2'>
+          <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+      </a>
+  </li>
 
-       <div class="form-group " >  
-          <button type="button" class="btn  btn-default" id="btn-TopPV-search" >
+
+  <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+  <li class="active cb3">
+    <a href="surfing_time.html" id='menuurl1'  >
+      <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+  </a>
+</li>
+<li class="active cb3">
+    <a href="changeOfSurfingTime.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+  </a>
+</li>
+
+
+
+<li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+<li class="active cb4" >
+    <a href="user_pic_shopping.html" id='menuurl1'>
+      <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+  </a>
+</li>
+<li class="active cb4">
+    <a href="user_pic.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+  </a>
+</li>
+
+
+
+<li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+<li  class="active cb5">
+    <a href="topPV.html"  id='menuurl1'>
+      <i class="fa fa-bar-chart-o "></i><span> PV</span>
+  </a>
+</li>
+<li class=" cb5" >
+    <a href="topUV.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+  </a>
+</li>
+
+
+</ul>
+
+</aside>
+<!-- Content -->
+<section id="content" class="container">
+
+
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">热门网站PV-TOP20</li>
+    </ol>
+    <h4 class="page-title">PV-TOP20</h4>
+
+
+    <span class="page-title pull-left">时间：</span>             
+    <div class="pull-left" >
+        <input type="date" class="form-control " id="sTdateTopPV" value="2017-01-05"
+        required="true" dateISO="true">
+    </div>
+
+    <div class="form-group " >  
+        <button type="button" class="btn  btn-default" id="btn-TopPV-search" style=" position:absolute; margin-left:20px;background-color: #66FFFF"  >
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
         </div>
 
@@ -109,14 +176,14 @@
         <br/><br/><br/>
     </section>
 </section>
-
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainTOPPV'),'dark-blue');
- var datas;
-       loadDATA();
+        var myChart = echarts.init(document.getElementById('mainTOPPV'),'dark');
+        var datas;
+        loadDATA();
         option = {
-            backgroundColor: '#0E2A43',
+            // backgroundColor: '#0E2A43',
+            backgroundColor:'#transparent',
             legend: {
                 bottom: 20,
                 textStyle:{
@@ -152,38 +219,38 @@
                 },
             },
             yAxis: [
-                {
-                    type: 'category',
-                    axisTick : {show: false},
-                    axisLine: {
-                        show: true,
-                        lineStyle:{
-                            color:'#fff',
-                        }
-                    },
-                    data:[datas[19].url,datas[18].url,datas[17].url,datas[16].url,datas[15].url,datas[14].url,datas[13].url,datas[12].url,datas[11].url,datas[10].url,datas[9].url,datas[8].url,datas[7].url,datas[6].url,datas[5].url,datas[4].url,datas[3].url,datas[2].url,datas[1].url,datas[0].url],
+            {
+                type: 'category',
+                axisTick : {show: false},
+                axisLine: {
+                    show: true,
+                    lineStyle:{
+                        color:'#fff',
+                    }
                 },
+                data:[datas[19].url,datas[18].url,datas[17].url,datas[16].url,datas[15].url,datas[14].url,datas[13].url,datas[12].url,datas[11].url,datas[10].url,datas[9].url,datas[8].url,datas[7].url,datas[6].url,datas[5].url,datas[4].url,datas[3].url,datas[2].url,datas[1].url,datas[0].url],
+            },
             ],
             series: [
-                {
-                    name: 'PVTOP20',
-                    type: 'bar',
-                    itemStyle:{
-                        normal: {
-                            show: true,
-                            color: '#277ace',
-                            barBorderRadius:50,
-                            borderWidth:0,
-                            borderColor:'#333',
-                        }
-                    },
-                    barGap:'0%',
-                    barCategoryGap:'50%',
-                    data:  [datas[19].num,datas[18].num,datas[17].num,datas[16].num,datas[15].num,datas[14].num,datas[13].num,datas[12].num,datas[11].num,datas[10].num,datas[9].num,datas[8].num,datas[7].num,datas[6].num,datas[5].num,datas[4].num,datas[3].num,datas[2].num,datas[1].num,datas[0].num],
-        },
-        ]
+            {
+                name: 'PVTOP20',
+                type: 'bar',
+                itemStyle:{
+                    normal: {
+                        show: true,
+                        color: '#277ace',
+                        barBorderRadius:50,
+                        borderWidth:0,
+                        borderColor:'#333',
+                    }
+                },
+                barGap:'0%',
+                barCategoryGap:'50%',
+                data:  [datas[19].num,datas[18].num,datas[17].num,datas[16].num,datas[15].num,datas[14].num,datas[13].num,datas[12].num,datas[11].num,datas[10].num,datas[9].num,datas[8].num,datas[7].num,datas[6].num,datas[5].num,datas[4].num,datas[3].num,datas[2].num,datas[1].num,datas[0].num],
+            },
+            ]
         };
-myChart.setOption(option);
+        myChart.setOption(option);
 
         $('#btn-TopPV-search').click(function(){
             loadDATA();
@@ -224,34 +291,34 @@ myChart.setOption(option);
                     },
                 },
                 yAxis: [
-                    {
-                        type: 'category',
-                        axisTick : {show: false},
-                        axisLine: {
-                            show: true,
-                            lineStyle:{
-                                color:'#fff',
-                            }
-                        },
-                        data:[datas[19].url,datas[18].url,datas[17].url,datas[16].url,datas[15].url,datas[14].url,datas[13].url,datas[12].url,datas[11].url,datas[10].url,datas[9].url,datas[8].url,datas[7].url,datas[6].url,datas[5].url,datas[4].url,datas[3].url,datas[2].url,datas[1].url,datas[0].url],
+                {
+                    type: 'category',
+                    axisTick : {show: false},
+                    axisLine: {
+                        show: true,
+                        lineStyle:{
+                            color:'#fff',
+                        }
                     },
+                    data:[datas[19].url,datas[18].url,datas[17].url,datas[16].url,datas[15].url,datas[14].url,datas[13].url,datas[12].url,datas[11].url,datas[10].url,datas[9].url,datas[8].url,datas[7].url,datas[6].url,datas[5].url,datas[4].url,datas[3].url,datas[2].url,datas[1].url,datas[0].url],
+                },
                 ],
                 series: [
-                    {
-                        type: 'bar',
-                        itemStyle:{
-                            normal: {
-                                show: true,
-                                color: '#277ace',
-                                barBorderRadius:50,
-                                borderWidth:0,
-                                borderColor:'#333',
-                            }
-                        },
-                        barGap:'0%',
-                        barCategoryGap:'50%',
-                        data:  [datas[19].num,datas[18].num,datas[17].num,datas[16].num,datas[15].num,datas[14].num,datas[13].num,datas[12].num,datas[11].num,datas[10].num,datas[9].num,datas[8].num,datas[7].num,datas[6].num,datas[5].num,datas[4].num,datas[3].num,datas[2].num,datas[1].num,datas[0].num],
+                {
+                    type: 'bar',
+                    itemStyle:{
+                        normal: {
+                            show: true,
+                            color: '#277ace',
+                            barBorderRadius:50,
+                            borderWidth:0,
+                            borderColor:'#333',
+                        }
                     },
+                    barGap:'0%',
+                    barCategoryGap:'50%',
+                    data:  [datas[19].num,datas[18].num,datas[17].num,datas[16].num,datas[15].num,datas[14].num,datas[13].num,datas[12].num,datas[11].num,datas[10].num,datas[9].num,datas[8].num,datas[7].num,datas[6].num,datas[5].num,datas[4].num,datas[3].num,datas[2].num,datas[1].num,datas[0].num],
+                },
                 ]
             };
             myChart.setOption(option);
@@ -273,43 +340,43 @@ myChart.setOption(option);
 
             });
         }
-</script>
-<script src="js/jquery-3.2.1.min.js"></script>
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
 
-<!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-<!--引入ECharts-->
-<script src="js/echarts/echarts.min.js"></script>
-<script src="js/echarts/china.js"></script>
-<!-- Charts -->
-<script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
-<script src="js/charts/jquery.flot.time.js"></script> <!-- Flot sub -->
-<script src="js/charts/jquery.flot.animator.min.js"></script> <!-- Flot sub -->
-<script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
-<script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
-<script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!--引入ECharts-->
+    <script src="js/echarts/echarts.min.js"></script>
+    <script src="js/echarts/china.js"></script>
+    <!-- Charts -->
+    <script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
+    <script src="js/charts/jquery.flot.time.js"></script> <!-- Flot sub -->
+    <script src="js/charts/jquery.flot.animator.min.js"></script> <!-- Flot sub -->
+    <script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
+    <script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
+    <script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
 
-<script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
-<script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
-<script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->
+    <script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
+    <script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
+    <script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->
 
-<!-- Map -->
-<script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
-<!--Media Player-->
-<script src="js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
+    <!-- Map -->
+    <script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
+    <!--Media Player-->
+    <script src="js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
 
-<!-- UX -->
-<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+    <!-- UX -->
+    <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
 
-<!-- Other -->
-<script src="js/calendar.min.js"></script> <!-- Calendar -->
-<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+    <!-- Other -->
+    <script src="js/calendar.min.js"></script> <!-- Calendar -->
+    <script src="js/feeds.min.js"></script> <!-- News Feeds -->
 
 
-<!-- All JS functions -->
-<script src="js/functions.js"></script>
-<script>
-    $(document).ready(function() {
+    <!-- All JS functions -->
+    <script src="js/functions.js"></script>
+    <script>
+        $(document).ready(function() {
     // var a;
     
     $("tr").click(function() {
@@ -326,5 +393,36 @@ myChart.setOption(option);
 });
 
 </script>
+<script>
+    $(document).ready(function() {
+        $("#DateInput").css("width","30%");
+        $('#selProvince').css("width","100px")
+
+        $('#dd').css("margin-left","0px")
+
+        $(".cb1").css("display","none");
+        $("#userarea").click(function(){
+            $(".cb1").toggle();
+        })
+        $(".cb2").css("display","none");
+        $("#brand").click(function(){
+            $(".cb2").toggle();
+        })
+        $(".cb3").css("display","none");
+        $("#surfingTime").click(function(){
+            $(".cb3").toggle();
+        })
+        $(".cb4").css("display","none");
+        $("#userpic").click(function(){
+            $(".cb4").toggle();
+        })
+        $(".cb5").css("display","none");
+        $("#top20").click(function(){
+            $(".cb5").toggle();
+        })
+
+    });
+</script>
+
 </body>
 </html>

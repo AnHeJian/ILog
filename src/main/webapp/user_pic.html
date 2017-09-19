@@ -16,7 +16,7 @@
     <!-- <script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script> -->
     <script src="js/echarts/echarts-wordcloud.js"></script>
     <!-- <script src="js/echarts/dark.js"></script> -->
-    <script src="js/echarts/dark-blue.js"></script>
+    <script src="js/echarts/dark.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -30,9 +30,10 @@
     <link href="css/generics.css" rel="stylesheet"> 
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
 </head>
 
-<body id="skin-blur-blue">
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">用户画像</a>
@@ -47,170 +48,260 @@
         <!-- Sidebar -->
         <aside id="sidebar">
 
-         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li >
-                <a href="user_pic_shopping.html" id='menuurl'>
-                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="user_pic.html"  id='menuurl'>
-                    <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
-                </a>
-            </li>
+           <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-        </ul>
-
-    </aside>
-
-    <!-- Content -->
-    <section id="content" class="container">
+             <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+             <li class="active cb1" id="userarea1">
+                <a href="user_area.html" id='menuurl1'>
+                  <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+              </a>
+          </li>
+          <li class="active cb1" id="userarea2">
+            <a href="detail_user_area.html"  id='menuurl2'>
+              <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+          </a>
+      </li>
 
 
+      <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+      <li class="active cb2">
+        <a href="brand.html" id='menuurl1'>
+          <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+      </a>
+  </li>
+  <li class="active cb2">
+    <a href="detail_brand.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+  </a>
+</li>
 
-        <!-- Breadcrumb -->
-       <ol class="breadcrumb hidden-xs">
-                <li><a href="index.html">首页</a></li>
-                <li class="active">词云形象图</li>
-            </ol>
-            <h4 class="page-title">词云形象</h4>
-        
 
-        <div class="col-md-12" >
-            <div id="mainUP" style="width: 100%;height:600px;"></div>
+<li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+<li class="active cb3">
+    <a href="surfing_time.html" id='menuurl1'  >
+      <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+  </a>
+</li>
+<li class="active cb3">
+    <a href="changeOfSurfingTime.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+  </a>
+</li>
 
-        </div>
 
-        <br/><br/><br/>
-    </section>
+
+<li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+
+<li class="active cb4">
+    <a href="user_pic.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+  </a>
+</li>
+<li class=" cb4" >
+    <a href="user_pic_shopping.html" id='menuurl1'>
+      <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+  </a>
+</li>
+
+
+
+<li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+<li  class="active cb5">
+    <a href="topPV.html"  id='menuurl1'>
+      <i class="fa fa-bar-chart-o "></i><span> PV</span>
+  </a>
+</li>
+<li class="active cb5" >
+    <a href="topUV.html"  id='menuurl2'>
+      <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+  </a>
+</li>
+
+
+</ul>
+
+</aside>
+
+<!-- Content -->
+<section id="content" class="container">
+
+
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">词云形象图</li>
+    </ol>
+    <h4 class="page-title">词云形象</h4>
+
+
+    <div class="col-md-12" >
+        <div id="mainUP" style="width: 100%;height:600px;"></div>
+
+    </div>
+
+    <br/><br/><br/>
+</section>
 </section>
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainUP'),'dark-blue');
+        var myChart = echarts.init(document.getElementById('mainUP'),'dark');
 
         var option = {
-            tooltip: {},
-            series: [ {
-                type: 'wordCloud',
-                gridSize: 2,
-                sizeRange: [12, 50],
-                rotationRange: [-90, 90],
-                shape: 'pentagon',
-                width: 600,
-                height: 400,
-                drawOutOfBound: true,
+           // backgroundColor:'#transparent',
+           tooltip: {},
+           series: [ {
+            type: 'wordCloud',
+            gridSize: 2,
+            sizeRange: [12, 50],
+            rotationRange: [-90, 90],
+            shape: 'pentagon',
+            width: 600,
+            height: 400,
+            drawOutOfBound: true,
+            textStyle: {
+                normal: {
+                    color: function () {
+                        return 'rgb(' + [
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: [
+            {
+                name: 'Sam S Club',
+                value: 10000,
                 textStyle: {
                     normal: {
-                        color: function () {
-                            return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                            ].join(',') + ')';
-                        }
+                        color: 'black'
                     },
                     emphasis: {
-                        shadowBlur: 10,
-                        shadowColor: '#333'
+                        color: 'red'
                     }
-                },
-                data: [
-                {
-                    name: 'Sam S Club',
-                    value: 10000,
-                    textStyle: {
-                        normal: {
-                            color: 'black'
-                        },
-                        emphasis: {
-                            color: 'red'
-                        }
-                    }
-                },
-                {
-                    name: 'Macys',
-                    value: 6181
-                },
-                {
-                    name: 'Amy Schumer',
-                    value: 4386
-                },
-                {
-                    name: 'Jurassic World',
-                    value: 4055
-                },
-                {
-                    name: 'Charter Communications',
-                    value: 2467
-                },
-                {
-                    name: 'Chick Fil A',
-                    value: 2244
-                },
-                {
-                    name: 'Planet Fitness',
-                    value: 1898
-                },
-                {
-                    name: 'Pitch Perfect',
-                    value: 1484
-                },
-                {
-                    name: 'Express',
-                    value: 1112
-                },
-                {
-                    name: 'Home',
-                    value: 965
-                },
-                {
-                    name: 'Johnny Depp',
-                    value: 847
-                },
-                {
-                    name: 'Lena Dunham',
-                    value: 582
-                },
-                {
-                    name: 'Lewis Hamilton',
-                    value: 555
-                },
-                {
-                    name: 'KXAN',
-                    value: 550
-                },
-                {
-                    name: 'Mary Ellen Mark',
-                    value: 462
-                },
-                {
-                    name: 'Farrah Abraham',
-                    value: 366
-                },
-                {
-                    name: 'Rita Ora',
-                    value: 360
-                },
-                {
-                    name: 'Serena Williams',
-                    value: 282
-                },
-                {
-                    name: 'NCAA baseball tournament',
-                    value: 273
-                },
-                {
-                    name: 'Point Break',
-                    value: 265
                 }
-                ]
-            } ]
-        };
-        myChart.setOption(option);
-        window.onresize = myChart.resize;
-    </script>
+            },
+            {
+                name: 'Macys',
+                value: 6181
+            },
+            {
+                name: 'Amy Schumer',
+                value: 4386
+            },
+            {
+                name: 'Jurassic World',
+                value: 4055
+            },
+            {
+                name: 'Charter Communications',
+                value: 2467
+            },
+            {
+                name: 'Chick Fil A',
+                value: 2244
+            },
+            {
+                name: 'Planet Fitness',
+                value: 1898
+            },
+            {
+                name: 'Pitch Perfect',
+                value: 1484
+            },
+            {
+                name: 'Express',
+                value: 1112
+            },
+            {
+                name: 'Home',
+                value: 965
+            },
+            {
+                name: 'Johnny Depp',
+                value: 847
+            },
+            {
+                name: 'Lena Dunham',
+                value: 582
+            },
+            {
+                name: 'Lewis Hamilton',
+                value: 555
+            },
+            {
+                name: 'KXAN',
+                value: 550
+            },
+            {
+                name: 'Mary Ellen Mark',
+                value: 462
+            },
+            {
+                name: 'Farrah Abraham',
+                value: 366
+            },
+            {
+                name: 'Rita Ora',
+                value: 360
+            },
+            {
+                name: 'Serena Williams',
+                value: 282
+            },
+            {
+                name: 'NCAA baseball tournament',
+                value: 273
+            },
+            {
+                name: 'Point Break',
+                value: 265
+            }
+            ]
+        } ]
+    };
+    myChart.setOption(option);
+    window.onresize = myChart.resize;
+</script>
+<script>
+    $(document).ready(function() {
+        $("#DateInput").css("width","30%");
+        $('#selProvince').css("width","100px")
+
+        $('#dd').css("margin-left","0px")
+
+        $(".cb1").css("display","none");
+        $("#userarea").click(function(){
+            $(".cb1").toggle();
+        })
+        $(".cb2").css("display","none");
+        $("#brand").click(function(){
+            $(".cb2").toggle();
+        })
+        $(".cb3").css("display","none");
+        $("#surfingTime").click(function(){
+            $(".cb3").toggle();
+        })
+        $(".cb4").css("display","none");
+        $("#userpic").click(function(){
+            $(".cb4").toggle();
+        })
+        $(".cb5").css("display","none");
+        $("#top20").click(function(){
+            $(".cb5").toggle();
+        })
+
+    });
+</script>
+
 
 
 </body>

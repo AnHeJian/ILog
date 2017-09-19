@@ -18,7 +18,7 @@
 
     <script src="js/echarts/echarts.min.js"></script>
     <script src="js/echarts/china.js"></script>
-    <script src="js/echarts/dark-blue.js"></script>
+    <script src="js/echarts/dark.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -32,6 +32,7 @@
     <link href="css/generics.css" rel="stylesheet"> 
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
     <style type="text/css">  
         select  
         {  
@@ -105,7 +106,7 @@
     </script>
 </head>
 
-<body id="skin-blur-blue">
+<body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">用户终端品牌分析</a>
@@ -120,16 +121,71 @@
         <!-- Sidebar -->
         <aside id="sidebar">
 
-         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+            <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li class="active">
-                <a href="brand.html" id='menuur'>
+               <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+               <li class="active cb1" id="userarea1">
+                <a href="user_area.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+                </a>
+            </li>
+            <li class="active cb1" id="userarea2">
+                <a href="detail_user_area.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+                </a>
+            </li>
+
+
+            <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+            <li class="active cb2">
+                <a href="brand.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
-            <li>
-                <a href="detail_brand.html"  id='menuurl'>
+            <li class=" cb2">
+                <a href="detail_brand.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+                </a>
+            </li>
+
+
+            <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+            <li class="active cb3">
+                <a href="surfing_time.html" id='menuurl1'  >
+                    <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+                </a>
+            </li>
+            <li class="active cb3">
+                <a href="changeOfSurfingTime.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+                </a>
+            </li>
+
+
+
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+            <li class="active cb4" >
+                <a href="user_pic_shopping.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+                </a>
+            </li>
+            <li class="active cb4">
+                <a href="user_pic.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+                </a>
+            </li>
+
+
+
+            <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+            <li  class="active cb5">
+                <a href="topPV.html"  id='menuurl1'>
+                    <i class="fa fa-bar-chart-o "></i><span> PV</span>
+                </a>
+            </li>
+            <li class="active cb5" >
+                <a href="topUV.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> UV</span>
                 </a>
             </li>
 
@@ -153,13 +209,13 @@
         <div class="pull-left">
             <span class="page-title">时间：</span>
             <div class="btn-group">
-                <button type="button" class="btn btn-default " data-toggle="modal" id="btn-brand-yesterday">
+                <button type="button" class="btn btn-default " data-toggle="modal" id="btn-brand-yesterday" style="background-color: #66FFFF">
                    昨天
                </button>
-               <button type="button" class="btn btn-default" id="btn-brand-lastSevDay">
+               <button type="button" class="btn btn-default" id="btn-brand-lastSevDay" style="background-color: #66FFFF">
                   最近七天
               </button>
-              <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-brand-lastMonth">
+              <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-brand-lastMonth" style="background-color: #66FFFF">
                   最近30天
               </button>
           </div>
@@ -169,12 +225,12 @@
       <span class="page-title pull-left">起始时间：</span>             
       <div class="pull-left" >
        <input type="date" class="form-control " id="sTdate1"
-       required="true" dateISO="true">
+       required="true" dateISO="true" value="2017-01-05">
    </div>
    <span class="page-title pull-left">终止时间：</span>             
    <div class="pull-left" id="DateInput">
        <input type="date" class="form-control " id="fNdate1"
-       required="true" dateISO="true">
+       required="true" dateISO="true" value="2017-01-05">
    </div>
    <!-- </div> -->
    <!-- </div> -->
@@ -189,8 +245,8 @@
       </dd>
   </dl>
   <div class="form-group pull-right" >  
-      <button type="button" class="btn  btn-default" id="btn-brand-search" >
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询</button>
+      <button type="button" class="btn  btn-default" id="btn-brand-search" style="position:absolute; margin-left:-80px; margin-top:2px ;background-color: #66FFFF">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
     </div>
 </form>
 </fieldset>
@@ -215,40 +271,42 @@
 
 
 <script type="text/javascript">
-    var myChart = echarts.init(document.getElementById('mainBR'),'dark-blue');
+    var myChart = echarts.init(document.getElementById('mainBR'),'dark');
 
     global_option = {
-        title: {
-            text: '品牌统计',
-            subtext: '昨天',
-            left: 'center'
-        },
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        series: [
-            {
-                type: 'pie',
-                radius: '65%',
-                center: ['50%', '50%'],
-                selectedMode: 'single',
-                data: [],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
+     backgroundColor:'#transparent',
+
+     title: {
+        text: '品牌统计',
+        subtext: '昨天',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    series: [
+    {
+        type: 'pie',
+        radius: '65%',
+        center: ['50%', '50%'],
+        selectedMode: 'single',
+        data: [],
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-        ]
-    };
+        }
+    }
+    ]
+};
 
 
-    var global_subtext;
-    var global_brandData;
-    var noData = false;
+var global_subtext;
+var global_brandData;
+var noData = false;
 
     //默认界面，显示昨天的信息
     loadBrandData();
@@ -291,37 +349,38 @@
     //显示型号top5
     function drawBar(ec) {
         option = {
-            title: {text: ec.name + '机型top5'},
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    myTool: {
-                        show: true,
-                        title: '返回',
-                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
-                        onclick: function () {
-                            returnPie()
-                        }
-                    },
-                    mark: {show: true},
-                    dataView: {show: true, readOnly: false},
-                    restore: {show: false},
-                    saveAsImage: {show: true},
-                }
-            },
-            calculable: true,
-            series: [
-                {
-                    name: '型号top5',
-                    type: 'funnel',
-                    x: '10%',
-                    sort: 'decending',
-                    itemStyle: {
-                        normal: {
+           backgroundColor:'#transparent',
+           title: {text: ec.name + '机型top5'},
+           tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                myTool: {
+                    show: true,
+                    title: '返回',
+                    icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                    onclick: function () {
+                        returnPie()
+                    }
+                },
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                restore: {show: false},
+                saveAsImage: {show: true},
+            }
+        },
+        calculable: true,
+        series: [
+        {
+            name: '型号top5',
+            type: 'funnel',
+            x: '10%',
+            sort: 'decending',
+            itemStyle: {
+                normal: {
                             // color: 各异,
                             label: {
                                 position: 'middle'
@@ -330,20 +389,20 @@
                     },
                     data: [],
                 }
-            ]
-        };
+                ]
+            };
 
 
-        var startDate = document.getElementById("sTdate1").value;
-        var endDate = document.getElementById("fNdate1").value;
-        var location = document.getElementById("selProvince").value;
-        var fixedTime = "0";
-        if(global_subtext=="昨天")
-            fixedTime = "1";
-        if(global_subtext=="最近7天")
-            fixedTime = "7";
-        if(global_subtext=="最近30天")
-            fixedTime = "30";
+            var startDate = document.getElementById("sTdate1").value;
+            var endDate = document.getElementById("fNdate1").value;
+            var location = document.getElementById("selProvince").value;
+            var fixedTime = "0";
+            if(global_subtext=="昨天")
+                fixedTime = "1";
+            if(global_subtext=="最近7天")
+                fixedTime = "7";
+            if(global_subtext=="最近30天")
+                fixedTime = "30";
         //alert(fixedTime+"|"+startDate+"|"+endDate+"|"+ec.name);
 
         $.ajax({
@@ -351,12 +410,12 @@
             async: false, //同步执行
             url: "brand.do",
             data: {"method": "modelQuery",
-                "fixedTime" : fixedTime,
-                "location" : location,
-                "startDate" : startDate,
-                "endDate" : endDate,
-                "brand" : ec.name
-            },
+            "fixedTime" : fixedTime,
+            "location" : location,
+            "startDate" : startDate,
+            "endDate" : endDate,
+            "brand" : ec.name
+        },
             dataType: "json", //返回数据形式为json
             success: function (result) {
                 if (result) {
@@ -391,20 +450,20 @@
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             series: [
-                {
-                    type: 'pie',
-                    radius: '65%',
-                    center: ['50%', '50%'],
-                    selectedMode: 'single',
-                    data: global_brandData,
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
+            {
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                selectedMode: 'single',
+                data: global_brandData,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 }
+            }
             ]
         };
 
@@ -603,8 +662,29 @@
     $(document).ready(function() {
       $('#selProvince').css("width","100px")
 
-       $('#dd').css("margin-left","0px")
-    });
+      $('#dd').css("margin-left","0px")
+
+      $(".cb1").css("display","none");
+      $("#userarea").click(function(){
+        $(".cb1").toggle();
+    })
+      $(".cb2").css("display","none");
+      $("#brand").click(function(){
+        $(".cb2").toggle();
+    })
+      $(".cb3").css("display","none");
+      $("#surfingTime").click(function(){
+        $(".cb3").toggle();
+    })
+      $(".cb4").css("display","none");
+      $("#userpic").click(function(){
+        $(".cb4").toggle();
+    })
+      $(".cb5").css("display","none");
+      $("#top20").click(function(){
+        $(".cb5").toggle();
+    })
+  });
 
 </script>
 </body>
