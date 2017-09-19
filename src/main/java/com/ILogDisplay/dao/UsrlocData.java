@@ -1,5 +1,6 @@
 package com.ILogDisplay.dao;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,8 +40,9 @@ public class UsrlocData {
                 "福建","贵州","广东","青海","西藏","四川","宁夏","海南","台湾","香港","澳门"};
 
         //Map<String, Object> map = new HashMap<String, Object>();
-        JSONArray resJSON =new JSONArray();
+
         ArrayList<detaillocbean> dlbarray = new ArrayList<detaillocbean>();
+        JSONArray resJSON =new JSONArray();
         ArrayList<locbean> lbarray = new ArrayList<locbean>();
 
         Statement stmt = sqlConfig();
@@ -48,24 +50,33 @@ public class UsrlocData {
             String usrlocsql = "SELECT times FROM " + tablename + " JOIN CityInfo ci ON city = ci.citycode AND ci.cityname LIKE '" + province + "%';";
             int pvsum = 0;
             int uvsum = 0;
+            double live = .0;
 
 
 
             try {
                 ResultSet rs = stmt.executeQuery(usrlocsql);
+
                 while (rs.next()) {
                     pvsum = pvsum+rs.getInt(1);
                     uvsum = uvsum+1;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return JSONArray.fromObject("[]");
             }
 
+            live = pvsum ==0 ? 0 : new BigDecimal(100*(float)uvsum / pvsum).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             if(!index.equals("BOTH")) {
                 locbean lb = new locbean();
                 lb.setName(province);
 
-                int sum = index.equals("PV") ? pvsum : uvsum;
+                double sum ;
+                if(!index.equals("LIVE"))
+                    sum = index.equals("PV") ? pvsum : uvsum;
+                else {
+                    sum = pvsum == 0 ? 0 : live;
+                }
                 lb.setValue(sum);
                 lbarray.add(lb);
             }
@@ -74,6 +85,7 @@ public class UsrlocData {
                 dlb.setName(province);
                 dlb.setPv(pvsum);
                 dlb.setUv(uvsum);
+                dlb.setLive(pvsum == 0 ? 0 : live);
 
                 dlbarray.add(dlb);
             }
@@ -103,7 +115,61 @@ public class UsrlocData {
         return getSqlData(date, "BOTH");
     }
 
+    public static JSONArray getCityData(String sdate, String edate, String cityname, String index){
+        Statement stmt = sqlConfig();
+        JSONArray resJSON =new JSONArray();
+        ArrayList<locbean> lbarray = new ArrayList<locbean>();
+        for(int time =Integer.valueOf(sdate);time<=Integer.valueOf(edate);time++) {
+            String tablename = "UsrLoc"+time;
+            String sql = "SELECT times FROM " +tablename + " JOIN CityInfo ci ON city = ci.citycode AND ci.cityname LIKE '" + cityname + "%';";
+            int pvsum = 0;
+            int uvsum = 0;
+            double live = .0;
+
+            try {
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    pvsum = pvsum+rs.getInt(1);
+                    uvsum = uvsum+1;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return JSONArray.fromObject("[]");
+            }
+
+            live = pvsum == 0 ? 0 : new BigDecimal(100*(float)uvsum / pvsum).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            locbean lb = new locbean();
+            lb.setName(String.valueOf(time));
+
+            double sum ;
+            if(!index.equals("LIVE"))
+                sum = index.equals("PV") ? pvsum : uvsum;
+            else {
+                sum = pvsum == 0 ? 0 : live;
+            }
+            lb.setValue(sum);
+            lbarray.add(lb);
+        }
+
+        if(stmt!= null)
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        if(conn!= null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        resJSON = JSONArray.fromObject(lbarray);
+        return resJSON;
+    }
+
     public static void main(String[] args) {
-        System.out.println(getUsrlocData("20170105","PV"));
+        //System.out.println(getUsrlocData("20170105","BOTH"));
+        System.out.println(getCityData("20170105","20170107","江苏","LIVE"));
     }
 }

@@ -2,17 +2,17 @@ package com.ILogDisplay.beans;
 
 public class locbean {
     private String name;
-    private int value;
+    private double value;
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public int getValue() {
+    public double getValue() {
         return value;
     }
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

@@ -4,7 +4,16 @@ public class detaillocbean {
     private String name;
     private int uv;
     private int pv;
+    private double live;
 
+    public void setLive(double live) {
+        this.live = live;
+    }
+
+    public double getLive() {
+        return live;
+
+    }
 
     public String getName() {
         return name;
