@@ -8,6 +8,7 @@ import com.ILogDisplay.beans.BrandBean;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
 public class BrandData {
 
     //连接数据庫
