@@ -16,7 +16,7 @@ public class BrandData {
     public static Statement sqlConfig() {
         Connection conn;
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://192.168.254.131:3306/logs?useUnicode=true&characterEncoding=UTF-8";
+        String url = "jdbc:mysql://192.168.222.132:3306/logs?useUnicode=true&characterEncoding=UTF-8";
         String user = "root";
         String psw = "123456";
 

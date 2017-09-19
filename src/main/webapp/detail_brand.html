@@ -122,83 +122,71 @@
 
         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li >
+            <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+            <li class="active cb1" id="userarea1">
+                <a href="user_area.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
+                </a>
+            </li>
+            <li class=" cb1" id="userarea2">
+                <a href="detail_user_area.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+                </a>
+            </li>
+
+
+            <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
+            <li class="cb2">
                 <a href="brand.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
-            <li class="active">
+            <li class="active cb2">
                 <a href="detail_brand.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
                 </a>
             </li>
-           <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
-           <li class="active cb1" id="userarea1">
-            <a href="user_area.html" id='menuurl1'>
-              <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
-            </a>
-          </li>
-          <li class="active cb1" id="userarea2">
-            <a href="detail_user_area.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
-            </a>
-          </li>
 
 
-          <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
-          <li class=" cb2">
-            <a href="brand.html" id='menuurl1'>
-              <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
-            </a>
-          </li>
-          <li class="active cb2">
-            <a href="detail_brand.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
-            </a>
-          </li>
-
-
-          <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
-          <li class="active cb3">
-            <a href="surfing_time.html" id='menuurl1'  >
-              <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
-            </a>
-          </li>
-          <li class="active cb3">
-            <a href="changeOfSurfingTime.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
-            </a>
-          </li>
+            <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
+            <li class="active cb3">
+                <a href="surfing_time.html" id='menuurl1'  >
+                    <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
+                </a>
+            </li>
+            <li class="active cb3">
+                <a href="changeOfSurfingTime.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
+                </a>
+            </li>
 
 
 
-          <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
-          <li class="active cb4" >
-            <a href="user_pic_shopping.html" id='menuurl1'>
-              <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
-            </a>
-          </li>
-          <li class="active cb4">
-            <a href="user_pic.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
-            </a>
-          </li>
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
+            <li class="active cb4" >
+                <a href="user_pic_shopping.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+                </a>
+            </li>
+            <li class="active cb4">
+                <a href="user_pic.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
+                </a>
+            </li>
 
 
 
-          <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
-          <li  class="active cb5">
-            <a href="topPV.html"  id='menuurl1'>
-              <i class="fa fa-bar-chart-o "></i><span> PV</span>
-            </a>
-          </li>
-          <li class="active cb5" >
-            <a href="topUV.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> UV</span>
-            </a>
-          </li>
-
-
+            <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
+            <li  class="active cb5">
+                <a href="topPV.html"  id='menuurl1'>
+                    <i class="fa fa-bar-chart-o "></i><span> PV</span>
+                </a>
+            </li>
+            <li class="active cb5" >
+                <a href="topUV.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> UV</span>
+                </a>
+            </li>
 
         </ul>
 
@@ -639,23 +627,23 @@
 
           $(".cb1").css("display","none");
           $("#userarea").click(function(){
-            $(".cb1").toggle();
+              $(".cb1").toggle();
           })
           $(".cb2").css("display","none");
           $("#brand").click(function(){
-            $(".cb2").toggle();
+              $(".cb2").toggle();
           })
           $(".cb3").css("display","none");
           $("#surfingTime").click(function(){
-            $(".cb3").toggle();
+              $(".cb3").toggle();
           })
           $(".cb4").css("display","none");
           $("#userpic").click(function(){
-            $(".cb4").toggle();
+              $(".cb4").toggle();
           })
           $(".cb5").css("display","none");
           $("#top20").click(function(){
-            $(".cb5").toggle();
+              $(".cb5").toggle();
           })
         });
 
