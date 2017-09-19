@@ -17,7 +17,7 @@
     <!--引入ECharts-->
     <script src="js/echarts/echarts.min.js"></script>
     <script src="js/echarts/china.js"></script>
-    <script src="js/echarts/dark-blue.js"></script>
+    <script src="js/echarts/dark.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
@@ -29,28 +29,29 @@
     <link href="css/media-player.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/icons.css" rel="stylesheet">
-    <link href="css/generics.css" rel="stylesheet">
-    <link href="css/mstp_map.css" rel="stylesheet">
+    <link href="css/generics.css" rel="stylesheet"> 
+    <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
-    <style type="text/css">
-        select
-        {
-            width: 135px;
-        }
-        fieldset dl dd
-        {
-            float: left;
-            margin-left: 20px;
+    <link href="css/sidebar.css" rel="stylesheet">
+    <style type="text/css">  
+        select  
+        {  
+            width: 135px;  
+        }  
+        fieldset dl dd  
+        {  
+            float: left;  
+            margin-left: 20px;  
 
-        }
-        fieldset pre
-        {
-            width: 100%;
-            height: 400px;
-            overflow-y: scroll;
-            overflow-x: hidden;
-        }
-    </style>
+        }  
+        fieldset pre  
+        {  
+            width: 100%;  
+            height: 400px;  
+            overflow-y: scroll;  
+            overflow-x: hidden;  
+        }  
+    </style>  
     <script>
         $(document).ready(function() {
 
@@ -62,8 +63,8 @@
     <script type="text/javascript" language="javascript">
         //定义数组，存储省份信息
         var province = ["北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
-            "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
-            "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
+        "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
+        "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
 
         //定义数组,存储城市信息
         var beijing = ["北京"];
@@ -98,8 +99,8 @@
         var ningxia = ["银川", "石嘴山", "吴忠", "固原", "中卫"];
         var hainan = ["海口", "三亚"];
         var xianggang = ["中西区", "湾仔区", "东区", "南区", "九龙城区", "油尖旺区", "观塘区", "黄大仙区", "深水埗区", "北区", "大埔区", "沙田区", "西贡区", "元朗区", "屯门区", "荃湾区", "葵青区", "离岛区"];
-        var taiwan = ["台北", "高雄", "基隆", "台中", "台南", "新竹", "嘉义"];
-        var aomeng = ["澳门半岛", "氹仔岛", "路环岛"];
+                var taiwan = ["台北", "高雄", "基隆", "台中", "台南", "新竹", "嘉义"];
+                var aomeng = ["澳门半岛", "氹仔岛", "路环岛"];
 
         //页面加载方法
         $(function () {
@@ -139,107 +140,107 @@
             //通过省份名称，获取省份对应城市的数组名
             switch (provinec) {
                 case "北京":
-                    proCity = beijing;
-                    break;
+                proCity = beijing;
+                break;
                 case "上海":
-                    proCity = shanghai;
-                    break;
+                proCity = shanghai;
+                break;
                 case "天津":
-                    proCity = tianjing;
-                    break;
+                proCity = tianjing;
+                break;
                 case "重庆":
-                    proCity = chongqing;
-                    break;
+                proCity = chongqing;
+                break;
                 case "浙江":
-                    proCity = zhejiang;
-                    break;
+                proCity = zhejiang;
+                break;
                 case "江苏":
-                    proCity = jiangsu;
-                    break;
+                proCity = jiangsu;
+                break;
                 case "广东":
-                    proCity = guangdong;
-                    break;
+                proCity = guangdong;
+                break;
                 case "福建":
-                    proCity = fujiang;
-                    break;
+                proCity = fujiang;
+                break;
                 case "湖南":
-                    proCity = hunan;
-                    break;
+                proCity = hunan;
+                break;
                 case "湖北":
-                    proCity = hubei;
-                    break;
+                proCity = hubei;
+                break;
                 case "辽宁":
-                    proCity = liaoning;
-                    break;
+                proCity = liaoning;
+                break;
                 case "吉林":
-                    proCity = jilin;
-                    break;
+                proCity = jilin;
+                break;
                 case "黑龙江":
-                    proCity = heilongjiang;
-                    break;
+                proCity = heilongjiang;
+                break;
                 case "河北":
-                    proCity = hebei;
-                    break;
+                proCity = hebei;
+                break;
                 case "河南":
-                    proCity = henan;
-                    break;
+                proCity = henan;
+                break;
                 case "山东":
-                    proCity = shandong;
-                    break;
+                proCity = shandong;
+                break;
                 case "陕西":
-                    proCity = shangxi;
-                    break;
+                proCity = shangxi;
+                break;
                 case "甘肃":
-                    proCity = gansu;
-                    break;
+                proCity = gansu;
+                break;
                 case "新疆":
-                    proCity = xinjiang;
-                    break;
+                proCity = xinjiang;
+                break;
                 case "青海":
-                    proCity = qinghai;
-                    break;
+                proCity = qinghai;
+                break;
                 case "山西":
-                    proCity = shanxi;
-                    break;
+                proCity = shanxi;
+                break;
                 case "四川":
-                    proCity = sichuan;
-                    break;
+                proCity = sichuan;
+                break;
                 case "贵州":
-                    proCity = guizhou;
-                    break;
+                proCity = guizhou;
+                break;
                 case "安徽":
-                    proCity = anhui;
-                    break;
+                proCity = anhui;
+                break;
                 case "江西":
-                    proCity = jiangxi;
-                    break;
+                proCity = jiangxi;
+                break;
                 case "云南":
-                    proCity = yunnan;
-                    break;
+                proCity = yunnan;
+                break;
                 case "内蒙古":
-                    proCity = neimenggu;
-                    break;
+                proCity = neimenggu;
+                break;
                 case "西藏":
-                    proCity = xizang;
-                    break;
+                proCity = xizang;
+                break;
                 case "广西":
-                    proCity = guangxi;
-                    break;
+                proCity = guangxi;
+                break;
                 case "宁夏":
-                    proCity = ningxia;
-                    break;
+                proCity = ningxia;
+                break;
                 case "海南":
-                    proCity = hainan;
-                    break;
+                proCity = hainan;
+                break;
                 case "香港":
-                    proCity = xianggang;
-                    break;
+                proCity = xianggang;
+                break;
                 case "澳门":
-                    proCity = aomeng;
-                    break;
+                proCity = aomeng;
+                break;
                 case "台湾":
-                    proCity = taiwan;
-                    break;
+                proCity = taiwan;
+                break;
             }
 
             //先清空之前绑定的值
@@ -275,29 +276,30 @@
 </head>
 
 <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
-<header id="header" class="media">
-    <a href="" id="menu-toggle"></a>
-    <a class="logo pull-left" href="index.html">用户上网时段分析</a>
+    <header id="header" class="media">
+        <a href="" id="menu-toggle"></a> 
+        <a class="logo pull-left" href="index.html">用户上网时段分析</a>
 
 
-</header>
+    </header>
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-<section id="main" class="p-relative" role="main">
+    <section id="main" class="p-relative" role="main">
 
-    <!-- Sidebar -->
-    <aside id="sidebar">
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <aside id="sidebar">
 
-        <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-            <li class="active">
-                <a href="surfing_time.html" id='menuurl'>
+            <li >
+                <a href="surfing_time.html" id='menuurl1'  >
                     <i class="fa fa-bar-chart-o"></i><span>上网时段分布</span>
                 </a>
             </li>
-            <li>
-                <a href="changeOfSurfingTime.html"  id='menuurl'>
+            <li class="active">
+                <a href="changeOfSurfingTime.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
                 </a>
             </li>
@@ -327,25 +329,25 @@
             时间：
             <span class="form-group">
             <input type="date" class="form-control " id="singeDate_surfingTime" value="2017-01-02"
-                   required="true" dateiso="true">
+                           required="true" dateiso="true">
             </span></span></span>
             <div class="form-group" id="DateInput" ></div>
-            <fieldset>
-                <form class="form-inline">
-                    <button type="button" class="btn  btn-default" id="btn-Dbrand-search" style="position:absolute; margin-left:-10px; margin-top:10px" onclick="loadDATA()">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true" ></span> 查询</button>
-                    <div class="form-group pull-left">
-                    </div>
-                </form>
-            </fieldset>
+                <fieldset>
+                    <form class="form-inline">
+                      <button type="button" class="btn  btn-default" id="btn-Dbrand-search" style="position:absolute; margin-left:-10px; margin-top:10px" onclick="loadDATA()">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true" ></span> 查询</button>
+                        <div class="form-group pull-left">
+                        </div>
+                    </form>
+                </fieldset>
 
             </form>
-        </div>
-        <script language="javascript" type="text/javascript">
-            var datas = null;
-            loadDATA();
-            function changeTable() {
-                var oTable = document.getElementById("table");
+      </div>
+      <script language="javascript" type="text/javascript">
+        var datas = null;
+        loadDATA();
+        function changeTable() {
+            var oTable = document.getElementById("tableidSurfingTime");
                 //修改单元格内容
                 for(var i=1;i<=23;i++){
                     oTable.rows[i].cells[1].innerHTML = datas[i-1].PVnum;
@@ -353,10 +355,10 @@
                 }
             }
             function loadDATA(){
-                var time=document.getElementById('singeDate_surfingTime').value==""?"2017-01-02":document.getElementById('singeDate_surfingTime').value;
-               var finalcity=document.getElementById('selCity').value==""?"北京":document.getElementById('selCity').value;
-                alert(time+" "+finalcity);
-                $.ajax({
+                var finalcity;
+                var time=document.getElementById('singeDate_surfingTime').value==null?"2017-01-02":document.getElementById('singeDate_surfingTime').value;
+                finalcity=document.getElementById('selCity').value==""?"北京":document.getElementById('selCity').value;
+                 $.ajax({
                     type : "post",
                     async : false, //tong步执行
                     url : "timechange.do",
@@ -373,42 +375,42 @@
                     }
                 });
             }
-        </script>>
+        </script>
 
         <div class="block-area" >
 
             <div class="row">
                 <!-- World Map -->
                 <div class="col-md-12">
-                    <table class="table  table-bordered  table-condensed tableid "  id="table">
-                        <tr  style="background-color:#2F4F4F ">
-                            <th>时间段</th>
-                            <th> 浏览量(PV)</th>
-                            <th> 访客数(UV)</th>
-                        </tr>
-                        <script type="text/javascript">
-                            var str = "";
-                            for (var i = 0; i < 24;i++)
-                            {
-                                str += "<tr>";
-                                var v=i+1;
-                                str += "   <td>"+i+":00-"+v+":00"+"</td>";
-                                str += "   <td>"+datas[i].PVnum+"</td>";
-                                str += "   <td>"+datas[i].UVnum+"</td>";
-                                str += "</tr>";
-                            }
-                            document.write(str);
-                        </script>
-                    </table>
-                </div>
-            </div>
-        </div>
+                 <table class="table  table-bordered  table-condensed tableid "  id="tableidSurfingTime">
+                    <tr  style="background-color:#2F4F4F "> 
+                        <th>时间段</th>
+                        <th> 浏览量(PV)</th>
+                        <th> 访客数(UV)</th>
+                    </tr>
+                    <script type="text/javascript">
+                     var str = "";
+                     for (var i = 0; i < 24;i++)
+                     {
+                         str += "<tr>";
+                         var v=i+1;
+                         str += "   <td>"+i+":00-"+v+":00"+"</td>";
+                         str += "   <td>"+datas[i].PVnum+"</td>";
+                         str += "   <td>"+datas[i].UVnum+"</td>";
+                         str += "</tr>";
+                     }
+                     document.write(str);
+                 </script>
+             </table>
+         </div>
+     </div>
+ </div>
 
 
-        <hr class="whiter m-t-20 m-b-20" />
+ <hr class="whiter m-t-20 m-b-20" />
 
-        <br/><br/><br/>
-    </section>
+ <br/><br/><br/>
+</section>
 </section>
 
 <!-- Javascript Libraries -->
