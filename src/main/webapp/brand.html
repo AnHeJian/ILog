@@ -29,40 +29,40 @@
     <link href="css/media-player.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/icons.css" rel="stylesheet">
-    <link href="css/generics.css" rel="stylesheet"> 
-    <link href="css/mstp_map.css" rel="stylesheet"> 
+    <link href="css/generics.css" rel="stylesheet">
+    <link href="css/mstp_map.css" rel="stylesheet">
     <link href="css/menu.css" rel="stylesheet">
-    <style type="text/css">  
-        select  
-        {  
-            width: 135px;  
-        }  
-        fieldset dl dd  
-        {  
-            float: left;  
-            margin-left: 20px;  
+    <style type="text/css">
+        select
+        {
+            width: 135px;
+        }
+        fieldset dl dd
+        {
+            float: left;
+            margin-left: 20px;
 
-        }  
-        fieldset pre  
-        {  
-            width: 100%;  
-            height: 400px;  
-            overflow-y: scroll;  
-            overflow-x: hidden;  
-        }  
-    </style>  
+        }
+        fieldset pre
+        {
+            width: 100%;
+            height: 400px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    </style>
     <script>
         $(document).ready(function() {
 
             $("#selProvince").css("width","100px");
-            
+
         });
     </script>
     <script type="text/javascript" language="javascript">
         //定义数组，存储省份信息
-        var province = ["全国" , "北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
-        "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
-        "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
+        var province = ["全国","北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
+            "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
+            "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
         $(function () {
             //设置省份数据
             setProvince();
@@ -88,13 +88,13 @@
             }
 
             //调用change事件，初始城市信息
-            //provinceChange();
+            provinceChange();
         }
-//   //省份选中事件
-//   function provinceChange() {
-//     var $pro = $("#selProvince");
-//     setCity($pro.val());
-// }
+        //   //省份选中事件
+        //   function provinceChange() {
+        //     var $pro = $("#selProvince");
+        //     setCity($pro.val());
+        // }
 
 
         //设置下拉列表间隔背景样色
@@ -106,29 +106,29 @@
 </head>
 
 <body id="skin-blur-blue">
-    <header id="header" class="media">
-        <a href="" id="menu-toggle"></a> 
-        <a class="logo pull-left" href="index.html">用户终端品牌分析</a>
+<header id="header" class="media">
+    <a href="" id="menu-toggle"></a>
+    <a class="logo pull-left" href="index.html">用户终端品牌分析</a>
 
 
-    </header>
+</header>
 
-    <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-    <section id="main" class="p-relative" role="main">
+<section id="main" class="p-relative" role="main">
 
-        <!-- Sidebar -->
-        <aside id="sidebar">
+    <!-- Sidebar -->
+    <aside id="sidebar">
 
-         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+        <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
             <li class="active">
-                <a href="brand.html" id='menuur'>
+                <a href="brand.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
             <li>
-                <a href="detail_brand.html"  id='menuurl'>
+                <a href="detail_brand.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
                 </a>
             </li>
@@ -154,69 +154,66 @@
             <span class="page-title">时间：</span>
             <div class="btn-group">
                 <button type="button" class="btn btn-default " data-toggle="modal" id="btn-brand-yesterday">
-                   昨天
-               </button>
-               <button type="button" class="btn btn-default" id="btn-brand-lastSevDay">
-                  最近七天
-              </button>
-              <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-brand-lastMonth">
-                  最近30天
-              </button>
-          </div>
-      </div>
-
-      <!-- <div class="form-group ">  -->  
-      <span class="page-title pull-left">起始时间：</span>             
-      <div class="pull-left" >
-       <input type="date" class="form-control " id="sTdate1"
-       required="true" dateISO="true">
-   </div>
-   <span class="page-title pull-left">终止时间：</span>             
-   <div class="pull-left" id="DateInput">
-       <input type="date" class="form-control " id="fNdate1"
-       required="true" dateISO="true">
-   </div>
-   <!-- </div> -->
-   <!-- </div> -->
-
-   <!-- </form> -->
-   <fieldset>
-     <form class="form-horizontal">
-      <span class="page-title pull-left">地点：</span>
-      <dl class=" pull-left"  >
-        <dd id="dd">
-          <select class="form-control" id="selProvince" onchange="provinceChange();"></select>
-      </dd>
-  </dl>
-  <div class="form-group pull-right" >  
-      <button type="button" class="btn  btn-default" id="btn-brand-search" >
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询</button>
-    </div>
-</form>
-</fieldset>
-
-<div class="block-area">
-
-    <div class="row">
-        <!-- World Map -style="width: 100%;height:600px-->
-        <div class="col-md-12">
-            <div id="mainBR" style="position: absolute; top: 0px; left: 11px; height: 500px; width: 1057px; border: 1px solid #transparent; padding: 10px;"></div>
+                    昨天
+                </button>
+                <button type="button" class="btn btn-default" id="btn-brand-lastSevDay">
+                    最近七天
+                </button>
+                <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-brand-lastMonth">
+                    最近30天
+                </button>
+            </div>
         </div>
-    </div>
-</div>
+
+        <!-- <div class="form-group ">  -->
+        <span class="page-title pull-left">起始时间：</span>
+        <div class="pull-left" >
+            <input type="date" class="form-control " id="sTdate1"
+                   required="true" dateISO="true">
+        </div>
+        <span class="page-title pull-left">终止时间：</span>
+        <div class="pull-left" id="DateInput">
+            <input type="date" class="form-control " id="fNdate1"
+                   required="true" dateISO="true">
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- </form> -->
+        <fieldset>
+            <form class="form-horizontal">
+                <span class="page-title pull-left">地点：</span>
+                <dl class=" pull-left"  >
+                    <dd id="dd">
+                        <select class="form-control" id="selProvince" onchange="provinceChange();"></select>
+                    </dd>
+                </dl>
+                <div class="form-group pull-right" >
+                    <button type="button" class="btn  btn-default" id="btn-brand-search" style="position:absolute; margin-left:-200px; margin-top:2px">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
+                </div>
+            </form>
+        </fieldset>
+
+        <div class="block-area">
+
+            <div class="row">
+                <!-- World Map -style="width: 100%;height:600px-->
+                <div class="col-md-12">
+                    <div id="mainBR" style="position: absolute; top: 0px; left: 11px; height: 500px; width: 1057px; border: 1px solid #transparent; padding: 10px;"></div>
+                </div>
+            </div>
+        </div>
 
 
 
-<hr class="whiter m-t-20 m-b-20" />
+        <hr class="whiter m-t-20 m-b-20" />
 
-<br/><br/><br/>
+        <br/><br/><br/>
+    </section>
 </section>
-</section>
-
-
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('mainBR'),'dark-blue');
-
     global_option = {
         title: {
             text: '品牌统计',
@@ -225,7 +222,7 @@
         },
         tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "品牌 : {b} <br/> 总量 : {c} <br/> 占比 : {d}%"
         },
         series: [
             {
@@ -244,7 +241,6 @@
             }
         ]
     };
-
 
     var global_subtext;
     var global_brandData;
@@ -284,18 +280,25 @@
     }
 
     //扇型图点击响应函数
-    myChart.on('click', function (param){
-        drawBar(param)
+    myChart.on('click', function (ec){
+        if(myChart.getOption().title[0].text=="品牌统计" && ec.name != "其他")
+            drawBar(ec);
     });
 
-    //显示型号top5
     function drawBar(ec) {
+        var ydata = [];
+        var dataAll = [];
         option = {
-            title: {text: ec.name + '机型top5'},
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c}%"
-            },
+            backgroundColor: '#0f375f',
+            title: [
+                {
+                    text: ec.name + '机型top5',
+                    x: '40%',
+                    y: '1%',
+                    textStyle: {color: "#fff", fontSize: "14"}
+                },
+
+            ],
             toolbox: {
                 show: true,
                 feature: {
@@ -313,72 +316,102 @@
                     saveAsImage: {show: true},
                 }
             },
-            calculable: true,
+            tooltip: {
+                formatter: '{b} : {c}'
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '12%',
+                top : '15%',
+                containLabel: true,
+            },
+            xAxis: [
+                {
+                    gridIndex: 0,
+                    axisTick: {show: false},
+                    axisLabel: {show: false},
+                    splitLine: {show: false},
+                    axisLine: {show: false}
+                },
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, interval: 0, data: ydata.reverse(),
+                    axisTick: {show: false}, axisLabel: {show: true}, splitLine: {show: false},
+                    axisLine: {show: true, lineStyle: {color: "#6173a3"}},
+                }
+            ],
             series: [
                 {
-                    name: '型号top5',
-                    type: 'funnel',
-                    x: '10%',
-                    sort: 'decending',
-                    itemStyle: {
-                        normal: {
-                            // color: 各异,
-                            label: {
-                                position: 'middle'
-                            }
-                        }
-                    },
-                    data: [],
-                }
+                    name: '型号排名',
+                    center: ['22%', '25%'],
+                    type: 'bar', xAxisIndex: 0, yAxisIndex: 0, barWidth: '60%',
+                    itemStyle: {normal: {color: '#86c9f4'}},
+                    label: {normal: {show: true, position: "right", textStyle: {color: "#9EA7C4"}}},
+                    data: dataAll.sort()
+                },
             ]
         };
-
 
         var startDate = document.getElementById("sTdate1").value;
         var endDate = document.getElementById("fNdate1").value;
         var location = document.getElementById("selProvince").value;
         var fixedTime = "0";
-        if(global_subtext=="昨天")
+
+        if (global_subtext == "昨天")
             fixedTime = "1";
-        if(global_subtext=="最近7天")
+        if (global_subtext == "最近7天")
             fixedTime = "7";
-        if(global_subtext=="最近30天")
+        if (global_subtext == "最近30天")
             fixedTime = "30";
+        if(fixedTime=="0" && (startDate=="" || endDate=="")) {
+            alert("请输入查询日期");
+            return false;
+        };
         //alert(fixedTime+"|"+startDate+"|"+endDate+"|"+ec.name);
 
         $.ajax({
             type: "get",
             async: false, //同步执行
             url: "brand.do",
-            data: {"method": "modelQuery",
-                "fixedTime" : fixedTime,
-                "location" : location,
-                "startDate" : startDate,
-                "endDate" : endDate,
-                "brand" : ec.name
+            data: {
+                "method": "modelQuery",
+                "fixedTime": fixedTime,
+                "location": location,
+                "startDate": startDate,
+                "endDate": endDate,
+                "brand": ec.name
             },
             dataType: "json", //返回数据形式为json
             success: function (result) {
                 if (result) {
                     //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
-                    if(result=="")
+                    if (result == "")
                         noData = true;
                     else {
-                        option.series[0].data = result;
+                        //option.series[0].data = [1,1,1,1,1];
+                        //option.yAxis[0].data = ['0','0','0','0','0'];
+                        for(var i=0;i<5;i++) {
+                            ydata[i] = result[i].name;
+                            dataAll[i] = result[i].value;
+                        }
+                        ydata.reverse();
+                        dataAll.sort();
                         noData = false;
                     }
                 }
             }
         });
 
-        if(noData)
+
+        //alert(dataAll);
+        if (noData)
             alert("没有查询到相关信息");
         else
             myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
     }
 
-
-    //默认返回后显示昨天的数据
     function returnPie(ec) {
         option = {
             title: {
@@ -407,7 +440,6 @@
                 }
             ]
         };
-
         myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
     }
 
@@ -525,6 +557,11 @@
         var location = document.getElementById("selProvince").value;
         var noData = false;
 
+        if(startDate=="" || endDate=="") {
+            alert("请输入查询日期");
+            return false;
+        };
+
         $.ajax({
             type : "get",
             async : false, //同步执行
@@ -557,6 +594,7 @@
         else
             myChart.setOption(global_option,true);
     };
+
 
 
 </script>
@@ -601,9 +639,9 @@
 
 <script>
     $(document).ready(function() {
-      $('#selProvince').css("width","100px")
+        $('#selProvince').css("width","100px")
 
-       $('#dd').css("margin-left","0px")
+        $('#dd').css("margin-left","0px")
     });
 
 </script>
