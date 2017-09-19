@@ -93,7 +93,7 @@
 
 
 
-            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
             <li class="active cb4" >
                 <a href="user_pic_shopping.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
@@ -153,41 +153,40 @@
 
             <!-- 日历控件设置初始值value-->
             <!-- <div class="form-group ">  -->
-            <div id="select_clear">
-                <div class="pull-left" id="DateInput" >
-                    <input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
-                    required="true" dateISO="true">
-                </div>
-                <!-- </div> -->
-                <!-- </div> -->
-
-                <!-- </form> -->
-           <!--  <div id="select_clear">
-       -->   </form>
-       <!-- <div class="form-group pull-left">
-        <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()" style="background-color: #66FFFF">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
-        </div> -->
-        <div class="form-group">
-            <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()" style="background-color: #66FFFF">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+            <div class="pull-left" id="DateInput">
+                <input type="date" class="form-control " id="singleDate_usersrea" value="2017-01-01"
+                       required="true" dateISO="true">
             </div>
+            <!-- </div> -->
+            <!-- </div> -->
 
-            <script type="text/javascript">
+            <!-- </form> -->
+            <div id="select_clear">
 
-                var datas = null;
-                loadDATA();
-                function changeTable() {
-                    var oTable = document.getElementById("tableid");
+                <div class="form-group">
+                    <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadDATA()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                </div>
+            </div>
+        </form>
+
+        <script type="text/javascript">
+
+            var datas = null;
+            loadDATA();
+            function changeTable() {
+                var oTable = document.getElementById("tableid");
                 //修改单元格内容
                 for(var i=1;i<=34;i++){
                     oTable.rows[i].cells[2].innerHTML = datas[i-1].pv;
                     oTable.rows[i].cells[3].innerHTML = datas[i-1].uv;
+                    oTable.rows[i].cells[4].innerHTML = datas[i-1].live;
                 }
             }
             function loadDATA(){
                 //获取用户选择
                 var date = document.getElementById('singleDate_usersrea').value;
+                var noData = false;
 
                 $.ajax({
                     type : "get",
@@ -200,15 +199,19 @@
                     dataType : "json", //返回数据形式为json
                     success : function(result) {
                         if(result){
-                            datas = result;
-                            //alert(result[0].pv);
-                            changeTable();
+                            if(result==""){
+                                noData = true;}
+                            else {
+                                datas = result;
+                                noData = false;
+                            }
                         }
-                    },
-                    error:function(){
-                        alert("查无数据");
                     }
                 });
+                if(noData)
+                    alert("没有查询到相关信息");
+                else
+                    changeTable();
             }
 
 
@@ -226,21 +229,23 @@
                         <th> 地域</th>
                         <th> 浏览量(PV)</th>
                         <th> 访客数(UV)</th>
+                        <th> 活跃度(%)</th>
                     </tr>
-                    <script type="text/javascript">
-                     var str = "";
-                     for (var i = 0; i < 34;i++)
-                     {
-                         str += "<tr>";
-                         str += "   <td><i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i></td>";
-                         str += "   <td>"+datas[i].name+"</td>";
-                         str += "   <td>"+datas[i].pv+"</td>";
-                         str += "   <td>"+datas[i].uv+"</td>";
-                         str += "</tr>";
-                     }
-                     document.write(str);
-                 </script>
-             </table>
+                     <script type="text/javascript">
+                         var str = "";
+                         for (var i = 0; i < 34;i++)
+                         {
+                             str += "<tr>";
+                             str += "   <td><i class=\"fa fa-line-chart\" aria-hidden=\"true\"></i></td>";
+                             str += "   <td>"+datas[i].name+"</td>";
+                             str += "   <td>"+datas[i].pv+"</td>";
+                             str += "   <td>"+datas[i].uv+"</td>";
+                             str += "   <td>"+datas[i].live+"</td>";
+                             str += "</tr>";
+                         }
+                         document.write(str);
+                     </script>
+                 </table>
 
          </div>
      </div>
@@ -289,7 +294,7 @@
 <script src="js/functions.js"></script>
 <script>
     $(document).ready(function() {
-       
+
         $("#DateInput").css("width","16%");
         $("#userareaKind").css("width","100px");
         //////////////////////////////////////////

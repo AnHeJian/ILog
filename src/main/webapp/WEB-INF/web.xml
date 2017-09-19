@@ -39,4 +39,13 @@
         <servlet-name>BrandServlet</servlet-name>
         <url-pattern>/brand.do</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>usrLocCityServlet</servlet-name>
+        <servlet-class>com.ILogDisplay.servlet.usrLocCityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>usrLocCityServlet</servlet-name>
+        <url-pattern>/usrloccity.do</url-pattern>
+    </servlet-mapping>
 </web-app>

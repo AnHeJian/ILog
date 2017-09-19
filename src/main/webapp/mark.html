@@ -8,15 +8,15 @@
     <meta name="description" content="Violate Responsive Admin Template">
     <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
-    <title>用户活跃区域分析</title>
-
+     <title>用户活跃区域分析</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!--引入ECharts-->
     <script src="js/echarts/echarts.min.js"></script>
     <script src="js/echarts/china.js"></script>
     <!--  -->
     <script src="js/echarts/echarts-wordcloud.js"></script>
     <script src="js/echarts/dark.js"></script>
-    <script src="js/echarts/dark.js"></script>
+    <script src="js/echarts/dark-blue.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -89,7 +89,7 @@
 
 
 
-<li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+<li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
 <li class="active cb4" >
     <a href="user_pic_shopping.html" id='menuurl1'>
       <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
@@ -122,16 +122,88 @@
 <!-- Content -->
 <section id="content" class="container">
 
-
-
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb hidden-xs">
-        <li><a href="index.html">首页</a></li>
-        <li class="active">详细信息</li>
-    </ol>
-    <h4 class="page-title">用户活跃度分布图</h4>
     <div class="col-md-12" >
         <div id="mainUPS" style="width: 100%;height:600px;"></div>
+        <!-- Breadcrumb -->
+       <ol class="breadcrumb hidden-xs">
+            <li><a href="index.html">首页</a></li>
+            <li class="active">详细信息</li>
+        </ol>
+		<h4 class="page-title">用户活跃度分布图</h4>
+        <div class="pull-left">
+            <span class="page-title">时间：</span>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default " data-toggle="modal" id="btn-brand-yesterday" onclick="changeDateToThree()">
+                    最近三天
+                </button>
+                <button type="button" class="btn btn-default" id="btn-brand-lastSevDay" onclick="changeDateToSeven()">
+                    最近七天
+                </button>
+                <button type="button" class="btn btn-default " data-toggle="modal" data-target="#changeAllTable" id="btn-brand-lastMonth" onclick="changeDateToMonth()">
+                    最近30天
+                </button>
+            </div>
+        </div>
+
+        <!-- <div class="form-group ">  -->
+        <span class="page-title pull-left">起始时间：</span>
+        <div class="pull-left" >
+            <input type="date" class="form-control " id="sTdate1" value="2017-01-01" style="width:160px"
+                   required="true" dateISO="true">
+        </div>
+        <span class="page-title pull-left">终止时间：</span>
+        <div class="pull-left" id="DateInput">
+            <input type="date" class="form-control " id="fNdate1" value="2017-01-07" style="width:160px"
+                   required="true" dateISO="true">
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- </form> -->
+        <fieldset>
+            <form class="form-horizontal">
+                <span class="page-title pull-left">地点：</span>
+                <dl class=" pull-left"  >
+                    <dd id="dd">
+                        <select class="form-control" id="selProvince">
+                            <script type="text/javascript">
+                                var provinces = ["北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
+                                    "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
+                                    "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
+                                var str = "";
+                                for (var i = 0; i < 34;i++)
+                                {
+                                    str += "<option value="+provinces[i]+">"+provinces[i]+"</option>";
+                                }
+                                document.write(str);
+                            </script>
+
+                        </select>
+                    </dd>
+                </dl>
+
+                <div id="select_clear">
+
+                    <div class="form-group">
+                        <span class="page-title">指标：</span>
+                        <select class="form-control " id="userareaKind" style="width:125px">
+                            <option value="PV">浏览量PV</option>
+                            <option value="UV">访客数UV</option>
+                            <option value="LIVE">活跃度</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn  pull-right btn-default" id="btn-schUserArea" onclick="loadData()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+
+
+        <div class="col-md-12" >
+            <div id="mainUPS" style="width: 100%;height:600px;"></div>
 
     </div>
 
@@ -141,64 +213,124 @@
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainUPS'),'dark');
-        var option = {
-           backgroundColor:'#transparent',
-           title: {
-            text: '详细信息',
+        var myChart = echarts.init(document.getElementById('mainUPS'),'dark-blue');
+        loadData();
+		myChart.setOption(option);
+        function loadData() {
+            var option = {
+                title: {
+                    text: '详细信息',
 
-        },
-        toolbox: {
-            show: true,
-            feature: {
-                dataView:{
-                    show:true
                 },
-                restore:{
-                    show:true
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataView: {
+                            show: true
+                        },
+                        restore: {
+                            show: true
+                        },
+                        dataZoom: {
+                            show: true
+                        },
+                        saveAsImage: {
+                            show: true
+                        },
+                        magicType: {
+                            type: ['line', 'bar']
+                        }
+                    }
                 },
-                dataZoom:{
-                    show:true
+                tooltip: {
+                    trigger: 'axis'
                 },
-                saveAsImage: {
-                    show: true
+                legend: {
+                    //data: ['PV']
+                    data: []
                 },
-                magicType: {
-                    type: ['line', 'bar']
+                xAxis: {
+                    //data: ["2017-01-01", "2017-01-02", "2017-01-03", "2017-01-04", "2017-01-05", "2017-01-06"]
+                    data: []
+                },
+                yAxis: {},
+                series: [{
+                    name: 'PV',
+                    type: 'line',
+                    //data: [50, 30, 50, 36, 107, 80, 80],
+                    data: [],
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值', symbol: 'arrow'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
                 }
-            }
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: ['PV']
-        },
-        xAxis: {
-            data: ["2017-01-01","2017-01-02", "2017-01-03", "2017-01-04", "2017-01-05", "2017-01-06", "2017-01-07"]
-        },
-        yAxis: {},
-        series: [{
-            name: 'PV',
-            type: 'line',
-            data: [5, 30, 20, 36, 10, 10, 20],
-            markPoint: {
-                data: [
-                {type: 'max', name: '最大值'},
-                {type: 'min', name: '最小值',symbol:'arrow'}
                 ]
-            },
-            markLine: {
-                data: [
-                {type: 'average', name: '平均值'}
-                ]
-            }
-        }]
-    };
+            };
+            var sdate = document.getElementById('sTdate1').value;
+            var edate = document.getElementById('fNdate1').value;
+            var cityname = document.getElementById('selProvince').value;
+            var index = document.getElementById('userareaKind').value;
+            var noData = false;
+            //alert(sdate+","+edate+","+cityname+","+index);
 
-    myChart.setOption(option);
-    window.onresize = myChart.resize;
+            $.ajax({
+                type: "post",
+                async: false, //同步执行
+                url: "usrloccity.do",
+                data: {
+                    //将用户选择传递给后台，其中usrinfo相当于传递的数据的id，
+                    //后台根据这个id来获得数据
+                    "mark": JSON.stringify(sdate + "," + edate + "," + cityname + "," + index)
+                },
+                dataType: "json", //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        //alert(result[1].name);
+                        if (result == "") {
+                            noData = true;
+                        }
+                        //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                        else {
+                            for (var i = 0; i < result.length; i++) {
+                                //option.legend.data.push(index.toString());
+                                option.xAxis.data.push((result[i].name).toString());
+                                option.series[0].data.push(result[i].value);
+                            }
+                            noData = false;
+                        }
+                    }
+                }
+
+            });
+
+            if (noData)
+                alert("没有查询到相关信息");
+            else
+                myChart.setOption(option);
+
+        }
+
+        function changeDateToThree() {
+            document.getElementById('sTdate1').value = "2017-01-01";
+            document.getElementById('fNdate1').value = "2017-01-03";
+        }
+        function changeDateToSeven() {
+            document.getElementById('sTdate1').value = "2017-01-01";
+            document.getElementById('fNdate1').value = "2017-01-07";
+        }
+        function changeDateToMonth() {
+            document.getElementById('sTdate1').value = "2017-01-01";
+            document.getElementById('fNdate1').value = "2017-01-31";
+        }
 </script>
+
 <script>
     $(document).ready(function() {
         $("#DateInput").css("width","30%");
