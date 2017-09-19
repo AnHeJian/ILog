@@ -22,11 +22,7 @@ public class TimeServlet extends HttpServlet {
         String []infosplit=infosplit1[1].split(",");
         String []timesplit=infosplit[0].split("-");
         String time=timesplit[0]+timesplit[1]+timesplit[2];
-        String city;
-        if(infosplit.length==2){
-            city=infosplit[1];
-        }
-        else{city=infosplit[1]+infosplit[2];}
+        String city=infosplit[1];
         PrintWriter out = response.getWriter();
 
         //向前台传递数据

@@ -14,7 +14,7 @@ public class TimeData {
         Connection con = null;
         JSONArray resJSON = new JSONArray();
         try {
-            String url = "jdbc:mysql://192.168.233.135:3306/logs?useUnicode=true&characterEncoding=utf-8";
+            String url = "jdbc:mysql://192.168.222.132:3306/logs?useUnicode=true&characterEncoding=utf-8";
             String user = "root";
             String pwd = "123456";
             Class.forName(driverName);
@@ -23,7 +23,7 @@ public class TimeData {
 
             String tablename = "Time"+time;
             System.out.println(tablename);
-            String getContent = "SELECT * FROM " + tablename + " WHERE city in(SELECT citycode from city_code where cityname=\"" + city+"\")";
+            String getContent = "SELECT * FROM " + tablename + " WHERE city in(SELECT citycode from city_code where cityname LIKE \"%" + city+"%\")";
             System.out.println(getContent);
             ResultSet res = stmt.executeQuery(getContent);
             ArrayList<Timedata> datalist=new ArrayList<Timedata>();
