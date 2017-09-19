@@ -13,6 +13,8 @@ import java.io.PrintWriter;
 import java.util.Calendar;
 
 
+
+
 @WebServlet(name = "BrandServlet")
 public class BrandServlet extends HttpServlet {
     //传入日期，返回日期的字符串:20170101
@@ -99,7 +101,6 @@ public class BrandServlet extends HttpServlet {
 
 
 
-
         if(method.equals("modelQuery")){
 
             if(fixedTime.equals("0")){
@@ -133,6 +134,39 @@ public class BrandServlet extends HttpServlet {
             out.println(json);
             out.flush();
             out.close();
+        }
+
+
+
+
+        if(method.equals("DbrandQuery")){
+            if(fixedTime.equals("0")){
+                startTime = formatDateStr(request.getParameter("startDate"));
+                endTime = formatDateStr(request.getParameter("endDate"));
+            }
+            else{
+                Calendar date = Calendar.getInstance();
+                //假设今天的时间
+                date.set(2017,01,8);
+
+                date.add(Calendar.DATE,-1);
+                endTime = getFormatDate(date);
+                date.add(Calendar.DATE,1-Integer.valueOf(fixedTime));
+                startTime = getFormatDate(date);
+            }
+
+            System.out.println(startTime+" | "+endTime);
+            //向前台发送数据
+
+            json = BrandData.queryCountryDetail(location,startTime, endTime);
+            System.out.println("1:"+json);
+
+            PrintWriter out = response.getWriter();
+            out.println(json);
+            out.flush();
+            out.close();
+
+
         }
     }
 }

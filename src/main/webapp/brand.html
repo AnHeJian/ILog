@@ -33,7 +33,7 @@
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
-    <style type="text/css">  
+    <style type="text/css">
         select  
         {  
             width: 135px;  
@@ -61,9 +61,9 @@
     </script>
     <script type="text/javascript" language="javascript">
         //定义数组，存储省份信息
-        var province = ["全国" , "北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
-        "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
-        "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
+        var province = ["全国","北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
+            "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
+            "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
         $(function () {
             //设置省份数据
             setProvince();
@@ -89,7 +89,7 @@
             }
 
             //调用change事件，初始城市信息
-            //provinceChange();
+            provinceChange();
         }
 //   //省份选中事件
 //   function provinceChange() {
@@ -106,22 +106,24 @@
     </script>
 </head>
 
+
 <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
-        <a href="" id="menu-toggle"></a> 
+        <a href="" id="menu-toggle"></a>
         <a class="logo pull-left" href="index.html">用户终端品牌分析</a>
 
 
-    </header>
+</header>
 
-    <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-    <section id="main" class="p-relative" role="main">
+<section id="main" class="p-relative" role="main">
 
-        <!-- Sidebar -->
-        <aside id="sidebar">
+    <!-- Sidebar -->
+    <aside id="sidebar">
 
             <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+        <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
                <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
                <li class="active cb1" id="userarea1">
@@ -139,10 +141,14 @@
             <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
             <li class="active cb2">
                 <a href="brand.html" id='menuurl1'>
+            <li class="active">
+                <a href="brand.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
             <li class=" cb2">
+                <a href="detail_brand.html"  id='menuurl2'>
+            <li>
                 <a href="detail_brand.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
                 </a>
@@ -163,7 +169,7 @@
 
 
 
-            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
             <li class="active cb4" >
                 <a href="user_pic_shopping.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
@@ -227,7 +233,7 @@
        <input type="date" class="form-control " id="sTdate1"
        required="true" dateISO="true" value="2017-01-05">
    </div>
-   <span class="page-title pull-left">终止时间：</span>             
+   <span class="page-title pull-left">终止时间：</span>
    <div class="pull-left" id="DateInput">
        <input type="date" class="form-control " id="fNdate1"
        required="true" dateISO="true" value="2017-01-05">
@@ -271,42 +277,40 @@
 
 
 <script type="text/javascript">
-    var myChart = echarts.init(document.getElementById('mainBR'),'dark');
+    var myChart = echarts.init(document.getElementById('mainBR'),'dark-blue');
 
     global_option = {
-     backgroundColor:'#transparent',
-
-     title: {
-        text: '品牌统计',
-        subtext: '昨天',
-        left: 'center'
-    },
-    tooltip: {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    series: [
-    {
-        type: 'pie',
-        radius: '65%',
-        center: ['50%', '50%'],
-        selectedMode: 'single',
-        data: [],
-        itemStyle: {
-            emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+        title: {
+            text: '品牌统计',
+            subtext: '昨天',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series: [
+            {
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                selectedMode: 'single',
+                data: [],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
             }
-        }
-    }
-    ]
-};
+        ]
+    };
 
 
-var global_subtext;
-var global_brandData;
-var noData = false;
+    var global_subtext;
+    var global_brandData;
+    var noData = false;
 
     //默认界面，显示昨天的信息
     loadBrandData();
@@ -342,102 +346,138 @@ var noData = false;
     }
 
     //扇型图点击响应函数
-    myChart.on('click', function (param){
-        drawBar(param)
+    myChart.on('click', function (ec){
+        if(myChart.getOption().title[0].text=="品牌统计" && ec.name != "其他")
+            drawBar(ec);
     });
 
-    //显示型号top5
     function drawBar(ec) {
+        var ydata = [];
+        var dataAll = [];
         option = {
-           backgroundColor:'#transparent',
-           title: {text: ec.name + '机型top5'},
-           tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c}%"
-        },
-        toolbox: {
-            show: true,
-            feature: {
-                myTool: {
-                    show: true,
-                    title: '返回',
-                    icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
-                    onclick: function () {
-                        returnPie()
-                    }
+            backgroundColor: '#0f375f',
+            title: [
+                {
+                    text: ec.name + '机型top5',
+                    x: '40%',
+                    y: '1%',
+                    textStyle: {color: "#fff", fontSize: "14"}
                 },
-                mark: {show: true},
-                dataView: {show: true, readOnly: false},
-                restore: {show: false},
-                saveAsImage: {show: true},
-            }
-        },
-        calculable: true,
-        series: [
-        {
-            name: '型号top5',
-            type: 'funnel',
-            x: '10%',
-            sort: 'decending',
-            itemStyle: {
-                normal: {
-                            // color: 各异,
-                            label: {
-                                position: 'middle'
-                            }
+
+            ],
+            toolbox: {
+                show: true,
+                feature: {
+                    myTool: {
+                        show: true,
+                        title: '返回',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function () {
+                            returnPie()
                         }
                     },
-                    data: [],
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: false},
+                    saveAsImage: {show: true},
                 }
-                ]
-            };
+            },
+            tooltip: {
+                formatter: '{b} : {c}'
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '12%',
+                top : '15%',
+                containLabel: true,
+            },
+            xAxis: [
+                {
+                    gridIndex: 0,
+                    axisTick: {show: false},
+                    axisLabel: {show: false},
+                    splitLine: {show: false},
+                    axisLine: {show: false}
+                },
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, interval: 0, data: ydata.reverse(),
+                    axisTick: {show: false}, axisLabel: {show: true}, splitLine: {show: false},
+                    axisLine: {show: true, lineStyle: {color: "#6173a3"}},
+                }
+            ],
+            series: [
+                {
+                    name: '型号排名',
+                    center: ['22%', '25%'],
+                    type: 'bar', xAxisIndex: 0, yAxisIndex: 0, barWidth: '60%',
+                    itemStyle: {normal: {color: '#86c9f4'}},
+                    label: {normal: {show: true, position: "right", textStyle: {color: "#9EA7C4"}}},
+                    data: dataAll.sort()
+                },
+            ]
+        };
 
+        var startDate = document.getElementById("sTdate1").value;
+        var endDate = document.getElementById("fNdate1").value;
+        var location = document.getElementById("selProvince").value;
+        var fixedTime = "0";
 
-            var startDate = document.getElementById("sTdate1").value;
-            var endDate = document.getElementById("fNdate1").value;
-            var location = document.getElementById("selProvince").value;
-            var fixedTime = "0";
-            if(global_subtext=="昨天")
-                fixedTime = "1";
-            if(global_subtext=="最近7天")
-                fixedTime = "7";
-            if(global_subtext=="最近30天")
-                fixedTime = "30";
+        if (global_subtext == "昨天")
+            fixedTime = "1";
+        if (global_subtext == "最近7天")
+            fixedTime = "7";
+        if (global_subtext == "最近30天")
+            fixedTime = "30";
+        if(fixedTime=="0" && (startDate=="" || endDate=="")) {
+            alert("请输入查询日期");
+            return false;
+        };
         //alert(fixedTime+"|"+startDate+"|"+endDate+"|"+ec.name);
 
         $.ajax({
             type: "get",
             async: false, //同步执行
             url: "brand.do",
-            data: {"method": "modelQuery",
-            "fixedTime" : fixedTime,
-            "location" : location,
-            "startDate" : startDate,
-            "endDate" : endDate,
-            "brand" : ec.name
-        },
+            data: {
+                "method": "modelQuery",
+                "fixedTime": fixedTime,
+                "location": location,
+                "startDate": startDate,
+                "endDate": endDate,
+                "brand": ec.name
+            },
             dataType: "json", //返回数据形式为json
             success: function (result) {
                 if (result) {
                     //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
-                    if(result=="")
+                    if (result == "")
                         noData = true;
                     else {
-                        option.series[0].data = result;
+                        //option.series[0].data = [1,1,1,1,1];
+                        //option.yAxis[0].data = ['0','0','0','0','0'];
+                        for(var i=0;i<5;i++) {
+                            ydata[i] = result[i].name;
+                            dataAll[i] = result[i].value;
+                        }
+                        ydata.reverse();
+                        dataAll.sort();
                         noData = false;
                     }
                 }
             }
         });
 
-        if(noData)
+
+        //alert(dataAll);
+        if (noData)
             alert("没有查询到相关信息");
         else
             myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
     }
 
-
-    //默认返回后显示昨天的数据
     function returnPie(ec) {
         option = {
             title: {
@@ -450,23 +490,22 @@ var noData = false;
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             series: [
-            {
-                type: 'pie',
-                radius: '65%',
-                center: ['50%', '50%'],
-                selectedMode: 'single',
-                data: global_brandData,
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                {
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    data: global_brandData,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
                     }
                 }
-            }
             ]
         };
-
         myChart.setOption(option, true); //当setOption第二个参数为true时，会阻止数据合并
     }
 
@@ -584,6 +623,11 @@ var noData = false;
         var location = document.getElementById("selProvince").value;
         var noData = false;
 
+        if(startDate=="" || endDate=="") {
+            alert("请输入查询日期");
+            return false;
+        };
+
         $.ajax({
             type : "get",
             async : false, //同步执行
@@ -616,6 +660,7 @@ var noData = false;
         else
             myChart.setOption(global_option,true);
     };
+
 
 
 </script>
@@ -660,8 +705,10 @@ var noData = false;
 
 <script>
     $(document).ready(function() {
-      $('#selProvince').css("width","100px")
+        $('#selProvince').css("width","100px")
 
+        $('#dd').css("margin-left","0px")
+    });
       $('#dd').css("margin-left","0px")
 
       $(".cb1").css("display","none");

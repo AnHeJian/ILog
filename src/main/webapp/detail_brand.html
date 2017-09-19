@@ -17,7 +17,7 @@
   
   <script src="js/echarts/echarts.min.js"></script>
   <script src="js/echarts/china.js"></script>
-  <script src="js/echarts/dark.js"></script>
+  <script src="js/echarts/dark-blue.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
@@ -31,8 +31,6 @@
   <link href="css/generics.css" rel="stylesheet"> 
   <link href="css/mstp_map.css" rel="stylesheet"> 
   <link href="css/menu.css" rel="stylesheet">
-  <link href="css/sidebar.css" rel="stylesheet">
-
   <style type="text/css">  
     select  
     {  
@@ -61,9 +59,9 @@
   </script>
   <script type="text/javascript" language="javascript">
         //定义数组，存储省份信息
-        var province = ["北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
-        "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
-        "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
+        var province = ["全国","北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",
+            "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",
+            "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];
         $(function () {
             //设置省份数据
             setProvince();
@@ -81,48 +79,59 @@
 
             //获取对应省份城市
             for (var i = 0, len = province.length; i < len; i++) {
-              modelVal = province[i];
-              option = "<option value='" + modelVal + "'>" + modelVal + "</option>";
+                modelVal = province[i];
+                option = "<option value='" + modelVal + "'>" + modelVal + "</option>";
 
                 //添加到 select 元素中
                 $sel.append(option);
-              }
+            }
 
             //调用change事件，初始城市信息
             // provinceChange();
-          }
-//   //省份选中事件
-//   function provinceChange() {
-//     var $pro = $("#selProvince");
-//     setCity($pro.val());
-// }
+        }
+        //   //省份选中事件
+        //   function provinceChange() {
+        //     var $pro = $("#selProvince");
+        //     setCity($pro.val());
+        // }
 
 
         //设置下拉列表间隔背景样色
         function setBgColor() {
-          var $option = $("select option:odd");
-          $option.css({ "background-color": "#DEDEDE" });
+            var $option = $("select option:odd");
+            $option.css({ "background-color": "#DEDEDE" });
         }
-      </script>
-    </head>
+    </script>
+</head>
+
 
     <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
       <header id="header" class="media">
-        <a href="" id="menu-toggle"></a> 
+        <a href="" id="menu-toggle"></a>
         <a class="logo pull-left" href="index.html">用户终端品牌变化</a>
 
 
-      </header>
+</header>
 
-      <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-      <section id="main" class="p-relative" role="main">
+<section id="main" class="p-relative" role="main">
 
-        <!-- Sidebar -->
-        <aside id="sidebar">
+    <!-- Sidebar -->
+    <aside id="sidebar">
 
-         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+        <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
+            <li >
+                <a href="brand.html" id='menuurl1'>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="detail_brand.html"  id='menuurl2'>
+                    <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
+                </a>
+            </li>
            <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
            <li class="active cb1" id="userarea1">
             <a href="user_area.html" id='menuurl1'>
@@ -163,7 +172,7 @@
 
 
 
-          <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
+          <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
           <li class="active cb4" >
             <a href="user_pic_shopping.html" id='menuurl1'>
               <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
@@ -226,7 +235,7 @@
          <input type="date" class="form-control " id="sTdate2"
          required="true" dateISO="true" value="2017-01-05">
        </div>
-       <span class="page-title pull-left">终止时间：</span>             
+       <span class="page-title pull-left">终止时间：</span>
        <div class="pull-left" >
          <input type="date" class="form-control " id="fNdate2"
          required="true" dateISO="true" value="2017-01-05">
@@ -239,7 +248,7 @@
               <select class="form-control" id="selProvince" onchange="provinceChange();"></select>
             </dd>
           </dl>
-          <div class="form-group pull-right">  
+          <div class="form-group pull-right">
             <button type="button" class="btn  btn-default" id="btn-Dbrand-search" style="position:absolute; margin-left:-100px; background-color: #66FFFF">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
             </div>
@@ -249,99 +258,341 @@
 
 
 
-        <div class="block-area">
+          <div class="block-area">
 
-          <div class="row">
-            <!-- World Map -->
-            <div class="col-md-12">
-             <div id="mainBRD" style="width: 100%;height:600px;"></div>
+            <div class="row">
+              <!-- World Map -->
+              <div class="col-md-12">
+               <div id="mainBRD" style="width: 100%;height:600px;"></div>
+             </div>
            </div>
          </div>
-       </div>
 
 
 
        <hr class="whiter m-t-20 m-b-20" />
 
-       <br/><br/><br/>
-     </section>
-   </section>
-   <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('mainBRD'),'dark');
-        option = {
-         backgroundColor:'#transparent',
-         title: {
-          text: 'Issues解决率趋势分析',
-          subtext: '纯属虚构'
+        <br/><br/><br/>
+    </section>
+</section>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('mainBRD'),'dark-blue');
+
+    var xAxisData = [];
+
+    global_option = {
+        title: {
+            text: '用户终端品牌变化',
+            subtext: 'test',
+            left: 'center'
         },
         tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data:['最高气温','最低气温']
+            trigger: 'axis'
         },
         toolbox: {
-          show: true,
-          feature: {
-            dataZoom: {},
-            dataView: {readOnly: false},
-            magicType: {type: ['line', 'bar']},
-            restore: {},
-            saveAsImage: {}
-          }
+            show: true,
+            feature: {
+                dataZoom: {},
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                saveAsImage: {}
+            }
         },
-        xAxis:  {
-          type: 'category',
-          boundaryGap: false,
-          data: ['6/1','6/4','6/7','6/10','6/13','6/16','6/19','6/21','6/24','6/27','6/30','7/2','7/5','7/8','7/11']
+        grid: {
+            left: '10%',
+            right: '10%',
+            bottom: '15%',
+            top : '15%',
+            containLabel: true,
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: []
         },
         yAxis: {
-          type: 'value',
-          axisLabel: {
-            formatter: '{value}'
-          }
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
         },
         series: [
-        {
-          name:'月度解决率',
-          type:'line',
-          data:[92, 96, 99, 91, 96, 103, 100,92, 96, 99, 91, 96, 103, 100,115],
-          markPoint: {
-            data: [
-            {type: 'max', name: '最大值'},
-            {type: 'min', name: '最小值'}
-            ]
-          },
-          markLine: {
-            data: [
-            {type: 'average', name: '平均值'}
-            ]
-          }
-        },
-        {
-          name:'累计解决率',
-          type:'line',
-          data:[81, 90, 96, 81, 86, 93, 90,81, 90, 96, 81, 86, 93, 90,100],
-          markPoint: {
-            data: [
-            {type: 'max', name: '最大值'},
-            {type: 'min', name: '最小值'}
-            ]
-          },
-          markLine: {
-            data: [
-            {type: 'average', name: '平均值'}
-            ]
-          }
-        }
+            {
+                name: '',
+                type: 'line',
+                data: [],
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [],
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [],
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [],
+            },
+            {
+                name: '',
+                type: 'line',
+                data: [],
+            }
         ]
-      };
-      myChart.setOption(option);
-      window.onresize = myChart.resize;
-    </script>
+    };
 
-    <script src="js/jquery-3.2.1.min.js"></script>
+    //默认界面，显示昨天的信息
+    loadBrandData();
+    function loadBrandData(){
+        global_option.title.subtext = "最近7天";
+
+        global_option.xAxis.data = [];
+        var nowDate = new Date();
+        var dayNum=0;
+        for(var i=nowDate.getTime()-86400000*7;i<nowDate;i+=86400000,dayNum++) {
+            var date = new Date(i);
+            global_option.xAxis.data[dayNum] = (date.getMonth()+1)+"."+date.getDate();
+        }
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "DbrandQuery",
+                "fixedTime" : "7",
+                "location" : "全国"
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts，因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        //xAxisData = [result[0][0],result[1][0],result[2][0],result[3][0],result[4][0]];
+                        //清空旧数据
+                        for(var i=0;i<5;i++) {
+                            global_option.series[i].name = '';
+                        }
+                        for(var i=0;i<5;i++)
+                            global_option.series[i].data = [];
+
+                        //赋值
+                        var len = 0;
+                        for(var js in result)
+                            len++;
+                        for(var i=0;i<len;i++) {
+                            global_option.series[i].name = result[i][0];
+                        }
+                        for(var i=0;i<len;i++){
+                            for(var j=1;j<=7;j++)
+                                global_option.series[i].data[j-1] = result[i][j];
+                        }
+                        noData = false;
+                    }
+                }
+            }
+        });
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    }
+    window.onresize = myChart.resize;
+
+
+    /*按钮事件响应*/
+    document.getElementById("btn-Dbrand-lastSvn").onclick = function(){
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+        global_option.title.subtext = "最近7天";
+
+        global_option.xAxis.data = [];
+        var nowDate = new Date();
+        var dayNum=0;
+        for(var i=nowDate.getTime()-86400000*7;i<nowDate;i+=86400000,dayNum++) {
+            var date = new Date(i);
+            global_option.xAxis.data[dayNum] = (date.getMonth()+1)+"."+date.getDate();
+        }
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "DbrandQuery",
+                "fixedTime" : "7",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts,因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        //xAxisData = [result[0][0],result[1][0],result[2][0],result[3][0],result[4][0]];
+                        //清空旧数据
+                        for(var i=0;i<5;i++)
+                            global_option.series[i].name = '';
+                        for(var i=0;i<5;i++){
+                            global_option.series[i].data = [];
+                        }
+                        //赋值
+                        var len = 0;
+                        for(var js in result)
+                            len++;
+                        for(var i=0;i<len;i++)
+                            global_option.series[i].name = result[i][0];
+                        for(var i=0;i<len;i++){
+                            for(var j=1;j<=7;j++)
+                                global_option.series[i].data[j-1] = result[i][j];
+                        }
+                        noData = false;
+                    }
+                }
+            }
+        });
+
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+
+    document.getElementById("btn-Dbrand-lastMonth").onclick = function(){
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+        global_option.title.subtext = "最近30天";
+
+
+        global_option.xAxis.data = [];
+        var nowDate = new Date();
+        var dayNum=0;
+        for(var i=nowDate.getTime()-86400000*30;i<nowDate;i+=86400000,dayNum++) {
+            var date = new Date(i);
+            global_option.xAxis.data[dayNum] = (date.getMonth()+1)+"."+date.getDate();
+        }
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "DbrandQuery",
+                "fixedTime" : "7",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts,因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        //清空旧数据
+                        for(var i=0;i<5;i++)
+                            global_option.series[i].name = '';
+                        for(var i=0;i<5;i++){
+                            global_option.series[i].data = [];
+                        }
+                        //赋值
+                        var len = 0;
+                        for(var js in result)
+                            len++;
+                        for(var i=0;i<len;i++)
+                            global_option.series[i].name = result[i][0];
+                        for(var i=0;i<len;i++){
+                            for(var j=1;j<=7;j++)
+                                global_option.series[i].data[j-1] = result[i][j];
+                        }
+                        noData = false;
+                    }
+                }
+            }
+        });
+
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+
+    document.getElementById("btn-Dbrand-search").onclick = function(){
+        var startDate = document.getElementById("sTdate2").value;
+        var endDate = document.getElementById("fNdate2").value;
+        var location = document.getElementById("selProvince").value;
+        var noData = false;
+        global_option.title.subtext = startDate +" 至 "+endDate;
+
+        if(startDate=="" || endDate=="") {
+            alert("请输入查询日期");
+            return false;
+        };
+
+        global_option.xAxis.data = [];
+        var dayNum=0;
+        for(var i=Date.parse(startDate+' 09:00');i<=Date.parse(endDate+' 09:00');i+=86400000,dayNum++) {
+            var date = new Date(i);
+            global_option.xAxis.data[dayNum] = (date.getMonth()+1)+"."+date.getDate();
+        }
+
+
+        $.ajax({
+            type : "get",
+            async : false, //同步执行
+            url : "brand.do",
+            data : {
+                "method" : "DbrandQuery",
+                "fixedTime" : "7",
+                "location" : location
+            },
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                if(result){
+                    //直接将ajax获取的json(即result)复制给echarts,因为option.series[0].data的格式和result格式完全一致
+                    if(result=="")
+                        noData = true;
+                    else {
+                        //清空旧数据
+                        for(var i=0;i<5;i++)
+                            global_option.series[i].name = '';
+                        for(var i=0;i<5;i++){
+                            global_option.series[i].data = [];
+                        }
+                        //赋值
+                        var len = 0;
+                        for(var js in result)
+                            len++;
+                        for(var i=0;i<len;i++)
+                            global_option.series[i].name = result[i][0];
+                        for(var i=0;i<len;i++){
+                            for(var j=1;j<=7;j++)
+                                global_option.series[i].data[j-1] = result[i][j];
+                        }
+                        noData = false;
+                    }
+                }
+            }
+        });
+
+        if(noData)
+            alert("没有查询到相关信息");
+        else
+            myChart.setOption(global_option,true);
+    };
+
+
+</script>
+<script src="js/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap -->
     <script src="js/bootstrap.min.js"></script>
