@@ -14,6 +14,7 @@ import java.util.Calendar;
 
 
 
+
 @WebServlet(name = "BrandServlet")
 public class BrandServlet extends HttpServlet {
     //传入日期，返回日期的字符串:20170101
