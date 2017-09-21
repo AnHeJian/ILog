@@ -13,7 +13,7 @@ public class TopData {
         Connection con = null;
         JSONArray resJSON = new JSONArray();
         try {
-            String url = "jdbc:mysql://192.168.233.135:3306/logs?useUnicode=true&characterEncoding=utf-8";
+            String url = "jdbc:mysql://192.168.222.132:3306/logs?useUnicode=true&characterEncoding=utf-8";
             String user = "root";
             String pwd = "123456";
             Class.forName(driverName);
@@ -54,6 +54,7 @@ public class TopData {
             resJSON=JSONArray.fromObject(resArray);
         } catch (Exception e) {
             e.printStackTrace();
+            return JSONArray.fromObject("[]");
         } finally {
             try {
                 con.close();

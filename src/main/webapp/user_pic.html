@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 9 ]><html class="ie9"><![endif]-->
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
@@ -9,20 +9,25 @@
     <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
     <title>用户画像</title>
-
-    <!--引入ECharts-->
     <script src="js/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/form.js"></script><!--引入自定义的JS文件-->
+    <!-- Bootstrap -->
+    <!--引入ECharts-->
+    <script src="js/echarts/echarts.min.js"></script>
+    <script src="js/echarts/china.js"></script>
+    <script src="js/echarts/dark.js"></script>
 
+    <!--引入ECharts-->
     <script src="js/echarts/echarts.min.js"></script>
     <script src="js/echarts/china.js"></script>
     <!-- <script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script> -->
     <script src="js/echarts/echarts-wordcloud.js"></script>
     <!-- <script src="js/echarts/dark.js"></script> -->
-    <script src="js/echarts/dark.js"></script>
 
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
     <link href="css/animate.min.css" rel="stylesheet">
@@ -36,14 +41,16 @@
     <link href="css/mstp_map.css" rel="stylesheet"> 
     <link href="css/menu.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
+
 </head>
 
 <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a> 
         <a class="logo pull-left" href="index.html">用户画像</a>
-
-
+        <div class="logo" style="position:fixed; bottom:0; left:-10px">
+            <img src="assets2/img/logo.png">
+        </div>
     </header>
 
     <div class="clearfix"></div>
@@ -54,28 +61,28 @@
         <aside id="sidebar">
 
 
-           <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+         <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
 
-             <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
-             <li class="active cb1" id="userarea1">
-                <a href="user_area.html" id='menuurl1'>
-                  <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
-              </a>
-          </li>
-          <li class="active cb1" id="userarea2">
-            <a href="detail_user_area.html"  id='menuurl2'>
-              <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
+           <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+           <li class="active cb1" id="userarea1">
+            <a href="user_area.html" id='menuurl1'>
+              <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
           </a>
       </li>
-
-
-      <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
-      <li class="active cb2">
-        <a href="brand.html" id='menuurl1'>
-          <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+      <li class="active cb1" id="userarea2">
+        <a href="detail_user_area.html"  id='menuurl2'>
+          <i class="fa fa-sort-amount-asc"></i><span> 详细信息</span>
       </a>
   </li>
+
+
+  <li class="list-group-item" id="brand"><span class="message-tag progress-bar-danger"></span>用户终端品牌</li>
   <li class="active cb2">
+    <a href="brand.html" id='menuurl1'>
+      <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
+  </a>
+</li>
+<li class="active cb2">
     <a href="detail_brand.html"  id='menuurl2'>
       <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
   </a>
@@ -105,7 +112,7 @@
 </li>
 <li class=" cb4" >
     <a href="user_pic_shopping.html" id='menuurl1'>
-      <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+      <i class="fa fa-bar-chart-o"></i><span> 用户标签</span>
   </a>
 </li>
 
@@ -139,158 +146,260 @@
         <li class="active">词云形象图</li>
     </ol>
     <h4 class="page-title">词云形象</h4>
+    
+    <form id="change-form" role="form" class="form-inline"  onSubmit="return checkMobile();" >
+        <div class="pull-left">
+            <div class="form-group">
+                <span class="page-title">手机号：</span>
 
 
-    <div class="col-md-12" >
-        <div id="mainUP" style="width: 100%;height:600px;"></div>
+                <input type="tel" class="form-control " name="userPicTel" id="userPicTel"  placeholder ="请输入手机号" value="15051856299" required="true" onchange="checkMobile();">
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn  pull-right btn-default" id="btn-userpicTel" onclick=draw() style="background-color: #66FFFF;margin-left:20px;">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询</button>
+            </div>
+        </form>
 
-    </div>
 
-    <br/><br/><br/>
-</section>
+
+
+
+        <div class="col-md-12" >
+            <div id="mainUP" style="width: 100%;height:600px;"></div>
+
+        </div>
+
+        <br/><br/><br/>
+    </section>
 </section>
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('mainUP'),'dark');
+        draw();
 
-        var option = {
-           // backgroundColor:'#transparent',
-           tooltip: {},
-           series: [ {
-            type: 'wordCloud',
-            gridSize: 2,
-            sizeRange: [12, 50],
-            rotationRange: [-90, 90],
-            shape: 'pentagon',
-            width: 600,
-            height: 400,
-            drawOutOfBound: true,
-            textStyle: {
-                normal: {
-                    color: function () {
-                        return 'rgb(' + [
-                        Math.round(Math.random() * 160),
-                        Math.round(Math.random() * 160),
-                        Math.round(Math.random() * 160)
-                        ].join(',') + ')';
-                    }
-                },
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
-            },
-            data: [
-            {
-                name: 'Sam S Club',
-                value: 10000,
-                textStyle: {
-                    normal: {
-                        color: 'black'
+        function draw() {
+            var option = {
+                backgroundColor:'#transparent',
+                tooltip: {},
+                series: [ {
+                    type: 'wordCloud',
+                    gridSize: 2,
+                    sizeRange: [12, 50],
+                    rotationRange: [-90, 90],
+                    shape: 'pentagon',
+                    width: 600,
+                    height: 400,
+                    drawOutOfBound: true,
+                    textStyle: {
+                        normal: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() *540),
+                                    Math.round(Math.random() * 420),
+                                    Math.round(Math.random() * 300)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            shadowBlur: 10,//设置阴影的模糊级数
+                            shadowColor: '#333'
+                        }
                     },
-                    emphasis: {
-                        color: 'red'
-                    }
-                }
-            },
-            {
-                name: 'Macys',
-                value: 6181
-            },
-            {
-                name: 'Amy Schumer',
-                value: 4386
-            },
-            {
-                name: 'Jurassic World',
-                value: 4055
-            },
-            {
-                name: 'Charter Communications',
-                value: 2467
-            },
-            {
-                name: 'Chick Fil A',
-                value: 2244
-            },
-            {
-                name: 'Planet Fitness',
-                value: 1898
-            },
-            {
-                name: 'Pitch Perfect',
-                value: 1484
-            },
-            {
-                name: 'Express',
-                value: 1112
-            },
-            {
-                name: 'Home',
-                value: 965
-            },
-            {
-                name: 'Johnny Depp',
-                value: 847
-            },
-            {
-                name: 'Lena Dunham',
-                value: 582
-            },
-            {
-                name: 'Lewis Hamilton',
-                value: 555
-            },
-            {
-                name: 'KXAN',
-                value: 550
-            },
-            {
-                name: 'Mary Ellen Mark',
-                value: 462
-            },
-            {
-                name: 'Farrah Abraham',
-                value: 366
-            },
-            {
-                name: 'Rita Ora',
-                value: 360
-            },
-            {
-                name: 'Serena Williams',
-                value: 282
-            },
-            {
-                name: 'NCAA baseball tournament',
-                value: 273
-            },
-            {
-                name: 'Point Break',
-                value: 265
-            }
-            ]
-        } ]
-    };
-    myChart.setOption(option);
+                    data: [
+                        {
+                            name: 'UserPicture',
+                            value: 18000,
+                            textStyle: {
+                                normal: {
+                                    color: 'white'
+                                },
+                                emphasis: {
+                                    color: 'red'
+                                }
+                            }
+                        },
+                        {
+                            name: 'woman',
+                            value: 10181
+                        },
+                        {
+                            name: 'working hunt',
+                            value: 9386
+                        },
+                        {
+                            name: 'education',
+                            value: 8055
+                        },
+                        {
+                            name: 'health',
+                            value: 8467
+                        },
+                        {
+                            name: 'entertainment',
+                            value: 7244
+                        },
+                        {
+                            name: 'Planet Fitness',
+                            value: 6800
+                        },
+                        {
+                            name: 'commerce',
+                            value: 5790
+                        },
+                        {
+                            name: 'study',
+                            value: 4280
+                        },
+                        {
+                            name: 'forum',
+                            value: 2990
+                        },
+                        {
+                            name: 'literature',
+                            value: 847
+                        },
+                        {
+                            name: 'Gossip',
+                            value: 582
+                        },
+                        {
+                            name: 'science and technology',
+                            value: 555
+                        },
+                        {
+                            name: 'traffic',
+                            value: 550
+                        },
+                        {
+                            name: 'computer game',
+                            value: 462
+                        },
+                        {
+                            name: 'Cosmetology',
+                            value: 366
+                        },
+                        {
+                            name: 'Prophesy',
+                            value: 360
+                        },
+                        {
+                            name: 'Gypsy',
+                            value: 282
+                        },
+                        {
+                            name: 'Macys',
+                            value: 281
+                        },
+                        {
+                            name: 'Amy Schumer',
+                            value: 286
+                        },
+                        {
+                            name: 'Jurassic World',
+                            value: 255
+                        },
+                        {
+                            name: 'Charter Communications',
+                            value: 267
+                        },
+                        {
+                            name: 'Chick Fil A',
+                            value: 244
+                        },
+                        {
+                            name: 'Planet Fitness',
+                            value: 298
+                        },
+                        {
+                            name: 'Pitch Perfect',
+                            value: 284
+                        },
+                        {
+                            name: 'Express',
+                            value: 212
+                        },
+                        {
+                            name: 'Home',
+                            value: 265
+                        },
+                        {
+                            name: 'Johnny Depp',
+                            value: 247
+                        },
+                        {
+                            name: 'Lena Dunham',
+                            value: 282
+                        },
+                        {
+                            name: 'Lewis Hamilton',
+                            value: 255
+                        },
+                        {
+                            name: 'KXAN',
+                            value: 250
+                        },
+                        {
+                            name: 'Mary Ellen Mark',
+                            value: 262
+                        },
+                        {
+                            name: 'Farrah Abraham',
+                            value: 266
+                        },
+
+                    ]
+                } ]
+            };
+            myChart.setOption(option);
+        }
+
+
     window.onresize = myChart.resize;
 </script>
-    <script src="js/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
 
-    <!--引入ECharts-->
-    <script src="js/echarts/echarts.min.js"></script>
-    <script src="js/echarts/china.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!--引入ECharts-->
+<script src="js/echarts/echarts.min.js"></script>
+<script src="js/echarts/china.js"></script>
+<script src="js/echarts/dark.js"></script>
+<!-- Charts -->
+<script src="js/charts/jquery.flot.js"></script> <!-- Flot Main -->
+<script src="js/charts/jquery.flot.time.js"></script> <!-- Flot sub -->
+<script src="js/charts/jquery.flot.animator.min.js"></script> <!-- Flot sub -->
+<script src="js/charts/jquery.flot.resize.min.js"></script> <!-- Flot sub - for repaint when resizing the screen -->
+<script src="js/charts/jquery.flot.orderBar.js"></script> <!-- Flot Bar chart -->
+<script src="js/charts/jquery.flot.pie.min.js"></script> <!-- Flot Pie chart -->
+
+<script src="js/sparkline.min.js"></script> <!-- Sparkline - Tiny charts -->
+<script src="js/easypiechart.js"></script> <!-- EasyPieChart - Animated Pie Charts -->
+<script src="js/mstp_map.js"></script> <!-- All the above chart related functions -->
+
+<!-- Map -->
+<script src="js/maps/jvectormap.min.js"></script> <!-- jVectorMap main library -->
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
 <script>
+ 
+   
     $(document).ready(function() {
-        $("#DateInput").css("width","30%");
-        $('#selProvince').css("width","100px")
-
-        $('#dd').css("margin-left","0px")
-
+        $("#DateInput").css("width","16%");
+        $("#userareaKind").css("width","100px");
+        //////////////////////////////////////////
         $(".cb1").css("display","none");
         $("#userarea").click(function(){
             $(".cb1").toggle();
@@ -311,18 +420,19 @@
         $("#top20").click(function(){
             $(".cb5").toggle();
         })
-
     });
 </script>
+<script type="text/javascript">   
+    function checkMobile(){
+        var phone = document.getElementById('userPicTel').value;
+        if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){
+            alert("手机号码有误，请重填");
+            return false;
+        }
+    }   
+</script>   
 
-    <script src="js/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!--引入ECharts-->
-    <script src="js/echarts/echarts.min.js"></script>
-    <script src="js/echarts/china.js"></script>
 
 </body>
 </html>

@@ -42,8 +42,9 @@
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a>
         <a class="logo pull-left" href="index.html">热门网站TOP20</a>
-
-
+        <div class="logo" style="position:fixed; bottom:0; left:-10px">
+            <img src="assets2/img/logo.png">
+        </div>
     </header>
 
     <div class="clearfix"></div>
@@ -54,17 +55,7 @@
         <aside id="sidebar">
 
            <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
-          <!--   <li  >
-                <a href="topPV.html"  id='menuurl1'>
-                    <i class="fa fa-bar-chart-o "></i><span> PV</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="topUV.html"  id='menuurl2'>
-                    <i class="fa fa-sort-amount-asc"></i><span> UV</span>
-                </a>
-            </li> -->
-            <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
+            <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度分析</li>
             <li class="active cb1" id="userarea1">
                 <a href="user_area.html" id='menuurl1'>
                   <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
@@ -88,8 +79,6 @@
       <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
   </a>
 </li>
-
-
 <li  class="list-group-item" id="surfingTime"><span class="message-tag progress-bar-info"></span>用户上网时段</li>
 <li class="active cb3">
     <a href="surfing_time.html" id='menuurl1'  >
@@ -101,13 +90,10 @@
       <i class="fa fa-sort-amount-asc"></i><span> 上网时段变化</span>
   </a>
 </li>
-
-
-
 <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
 <li class="active cb4" >
     <a href="user_pic_shopping.html" id='menuurl1'>
-      <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+      <i class="fa fa-bar-chart-o"></i><span> 用户标签</span>
   </a>
 </li>
 <li class="active cb4">
@@ -115,9 +101,6 @@
       <i class="fa fa-sort-amount-asc"></i><span> 词云形象图</span>
   </a>
 </li>
-
-
-
 <li  class="list-group-item" id="top20"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </li>
 <li  class=" cb5">
     <a href="topPV.html"  id='menuurl1'>
@@ -129,28 +112,19 @@
       <i class="fa fa-sort-amount-asc"></i><span> UV</span>
   </a>
 </li>
-
-
 </ul>
-
-
 </aside>
 <!-- Content -->
 <section id="content" class="container">
-
-
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb hidden-xs">
         <li><a href="index.html">首页</a></li>
         <li class="active">热门网站UV-TOP20</li>
     </ol>
     <h4 class="page-title">UV-TOP20</h4>
-
-
     <span class="page-title pull-left">时间：</span>
     <div class="pull-left" >
-        <input type="date" class="form-control " id="sTdateTopUV" value="2017-01-05"
+        <input type="date" class="form-control " id="sTdateTopUV" value="2017-01-01"
         required="true" dateISO="true">
     </div>
 

@@ -41,6 +41,7 @@ public class TimeData {
             resJSON = JSONArray.fromObject(datalist);
         } catch (Exception e) {
             e.printStackTrace();
+            return JSONArray.fromObject("[]");
         } finally {
             try {
                 con.close();

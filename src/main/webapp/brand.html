@@ -91,13 +91,6 @@
             //调用change事件，初始城市信息
             provinceChange();
         }
-//   //省份选中事件
-//   function provinceChange() {
-//     var $pro = $("#selProvince");
-//     setCity($pro.val());
-// }
-
-
         //设置下拉列表间隔背景样色
         function setBgColor() {
             var $option = $("select option:odd");
@@ -111,22 +104,22 @@
     <header id="header" class="media">
         <a href="" id="menu-toggle"></a>
         <a class="logo pull-left" href="index.html">用户终端品牌分析</a>
-
-
 </header>
-
+    <div class="logo" style="position:fixed; bottom:0; left:-10px">
+        <img src="assets2/img/logo.png">
+    </div>
 <div class="clearfix"></div>
 
 <section id="main" class="p-relative" role="main">
 
     <!-- Sidebar -->
-    <aside id="sidebar">
+    <!-- Sidebar -->
+		<aside id="sidebar">
 
-            <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
-        <ul class="list-unstyled side-menu" style="width: 100%!important;padding-top: 20px;">
+          <ul class="list-unstyled side-menu" style="width: 181px!important; height: 707px; padding-top: 20px">
 
-            <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</li>
-            <li class="active cb1" id="userarea1">
+              <li class="list-group-item" id="userarea"><span class="message-tag progress-bar-warning"></span>用户活跃度分析</li>
+              <li class="active cb1" id="userarea1">
                 <a href="user_area.html" id='menuurl1'>
                     <i class="fa fa-bar-chart-o"></i><span> 全息图概览</span>
                 </a>
@@ -144,7 +137,7 @@
                     <i class="fa fa-bar-chart-o"></i><span> 用户品牌特征</span>
                 </a>
             </li>
-            <li class=" cb2">
+            <li class="active cb2">
                 <a href="detail_brand.html"  id='menuurl2'>
                     <i class="fa fa-sort-amount-asc"></i><span> 用户品牌特征变化</span>
                 </a>
@@ -165,10 +158,10 @@
 
 
 
-            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>
+            <li class="list-group-item" id="userpic"><span class="message-tag progress-bar-success"></span>用户画像</li>   
             <li class="active cb4" >
                 <a href="user_pic_shopping.html" id='menuurl1'>
-                    <i class="fa fa-bar-chart-o"></i><span> 用户消费习惯分析</span>
+                    <i class="fa fa-bar-chart-o"></i><span> 用户标签</span>
                 </a>
             </li>
             <li class="active cb4">
@@ -191,9 +184,10 @@
                 </a>
             </li>
 
-        </ul>
 
+        </ul>
     </aside>
+
     <!-- Content -->
     <section id="content" class="container">
 
@@ -205,9 +199,6 @@
             <li class="active">用户终端品牌图</li>
         </ol>
         <h4 class="page-title">用户终端品牌分布</h4>
-        <!--   <form class="form-inline"> -->
-        <!-- <div class="form-group"> -->
-        <!-- <label for="carcard-color2" class="col-sm-2 control-label"> 时间：</label> -->
         <div class="pull-left">
             <span class="page-title">时间：</span>
             <div class="btn-group">
@@ -227,12 +218,12 @@
       <span class="page-title pull-left">起始时间：</span>             
       <div class="pull-left" >
        <input type="date" class="form-control " id="sTdate1"
-       required="true" dateISO="true" value="2017-01-05">
+       required="true" dateISO="true" value="2017-01-01">
    </div>
    <span class="page-title pull-left">终止时间：</span>
    <div class="pull-left" id="DateInput">
        <input type="date" class="form-control " id="fNdate1"
-       required="true" dateISO="true" value="2017-01-05">
+       required="true" dateISO="true" value="2017-01-07">
    </div>
    <!-- </div> -->
    <!-- </div> -->
@@ -247,7 +238,7 @@
       </dd>
   </dl>
   <div class="form-group pull-right" >  
-      <button type="button" class="btn  btn-default" id="btn-brand-search" style="position:absolute; margin-left:-80px; margin-top:2px ;background-color: #66FFFF">
+      <button type="button" class="btn  btn-default" id="btn-brand-search" style="position:absolute; margin-left:-150px; margin-top:2px ;background-color: #66FFFF">
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查询</button>
     </div>
 </form>
@@ -273,9 +264,10 @@
 
 
 <script type="text/javascript">
-    var myChart = echarts.init(document.getElementById('mainBR'),'dark-blue');
+    var myChart = echarts.init(document.getElementById('mainBR'),'dark');
 
     global_option = {
+
         title: {
             text: '品牌统计',
             subtext: '昨天',
@@ -351,16 +343,14 @@
         var ydata = [];
         var dataAll = [];
         option = {
-            backgroundColor: '#0f375f',
-            title: [
+            backgroundColor: '#transparent',
+            title:
                 {
                     text: ec.name + '机型top5',
                     x: '40%',
                     y: '1%',
                     textStyle: {color: "#fff", fontSize: "14"}
                 },
-
-            ],
             toolbox: {
                 show: true,
                 feature: {
@@ -373,7 +363,12 @@
                         }
                     },
                     mark: {show: true},
-                    dataView: {show: true, readOnly: false},
+                    dataView: {
+                        show: true,
+                        readOnly: false,
+                        backgroundColor:'#708090'
+
+                    },
                     restore: {show: false},
                     saveAsImage: {show: true},
                 }
@@ -410,7 +405,7 @@
                     center: ['22%', '25%'],
                     type: 'bar', xAxisIndex: 0, yAxisIndex: 0, barWidth: '60%',
                     itemStyle: {normal: {color: '#86c9f4'}},
-                    label: {normal: {show: true, position: "right", textStyle: {color: "#9EA7C4"}}},
+                    label: {normal: {show: true, position: "right", textStyle: {color: "white"}}},
                     data: dataAll.sort()
                 },
             ]
@@ -660,8 +655,7 @@
 
 
 </script>
-
-<!-- Javascript Libraries -->
+     <!-- Javascript Libraries -->
 
 <script src="js/jquery-3.2.1.min.js"></script>
 

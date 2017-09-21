@@ -9,75 +9,66 @@
 <meta name="description" content="" /> 
 
 <!-- <meta name="author" content="js代码" />
-    <meta name="Copyright" content="js代码" /> -->
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
-    <link rel="stylesheet" type="text/css" href="js/font-awesome.4.6.0.css">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/form.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
-    <!-- <link href="css/media-player.css" rel="stylesheet"> -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/icons.css" rel="stylesheet">
-    <link href="css/generics.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="css/reset.css">-->
-    <link rel="stylesheet" href="css/jquery.hotspot.css">
+	<meta name="Copyright" content="js代码" /> -->
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.4.css">
+	<link rel="stylesheet" type="text/css" href="js/font-awesome.4.6.0.css">
+	<link href="css/animate.min.css" rel="stylesheet">
+	<link href="css/form.css" rel="stylesheet">
+	<link href="css/calendar.css" rel="stylesheet">
+	<!-- <link href="css/media-player.css" rel="stylesheet"> -->
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/icons.css" rel="stylesheet">
+	<link href="css/generics.css" rel="stylesheet">
+	<!--<link rel="stylesheet" href="css/reset.css">-->
+	<link rel="stylesheet" href="css/jquery.hotspot.css">
+	<script src="js/modernizr.min.js"></script>
 </head>
 
-<style type="text/css">
-    .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin-right:90px; position:relative;}
-    .r_out p {position:absolute; /**bottom:-50px;*/ color:#fff; text-align:center; margin:0 auto; width:100%; font-size:14px; line-height:1.5; font-weight:bold;}
+<style>
+	body {
+		overflow: hidden;
+		background-color: #000;
+	}
 
-    .r_in {width:120px; height:120px; border:10px solid #fff; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; overflow:hidden; position:relative;}
-    .r_c {width:120px; height:120px; position:absolute; bottom:0; left:0; height:0;}
-    .c1 {background:#fbad4c;}
-    .c2 {background:#fff143;}
-    .c3 {background:#c9dd22;}
-    .c4 {background:#00e079;}
-    .c5 {background:#0eb83a;}
-    .r_num {color:#404040; font-size:23px; line-height:1.5; font-weight:bold; position:absolute; top:50%; margin-top:-25px; text-align:center; width:100%;}
+	canvas {
+		width: 100%;
+		height: 100vh;
+	}
 </style>
-
-
 <body style="background-image: url(img/background.jpg); background-size: 100%;background-size:cover;background-attachment:fixed">
-    <div >
-        <header id="header" class="media">
-            <a href="" id="menu-toggle"></a> 
-            <a class="logo pull-left" href="index.html" style="width: 233px">大数据上网日志分析系统</a>
-           
-        </div>
-        <!--  </div> -->
-</header>
+	<div>
+		<header id="header" class="media">
+			<a href="" id="menu-toggle"></a> 
+			<a class="logo pull-left" href="index.html" style="width: 233px ;font-size:large">大数据上网日志系统</a>
+			<div class="logo" style="position:fixed; bottom:0; left:-10px">
+				<img src="assets2/img/logo.png">
+			</div>
+	</header>
+	</div>
 
-<div class="clearfix"></div>
+	<div class="clearfix"></div>
 
 <!-- <section id="main" class="p-relative" role="main">
 -->
 <!-- Sidebar -->
 <aside id="sidebar" style="width: 180px" class="pull-left">
+	<!-- Calendar -->
+	<div class="s-widget m-b-25">
+		<div id="sidebar-calendar"></div>
+	</div>
 
-    <!-- Sidbar Widgets -->
-           <!--   <div class="side-widgets overflow">
-                   
-                 
-       </div>-->
+	<!-- Feeds -->
+	<div class="s-widget m-b-25">
 
-       <!-- Calendar -->
-       <div class="s-widget m-b-25">
-        <div id="sidebar-calendar"></div>
-    </div>
-
-    <!-- Feeds -->
-    <div class="s-widget m-b-25">
-
-        <div class="tile">
-            <h2 class="tile-title">系统导航</h2>
-            <div class="list-group list-group-flat m-t-15">
-                <a  href="user_area.html" class="list-group-item"><span class="message-tag progress-bar-warning"></span>用户活跃度变化</a>
-                <a  href="brand.html"  class="list-group-item"><span class="message-tag progress-bar-danger"></span>用户终端品牌</a>
-                <a  href="surfing_time.html"  class="list-group-item"><span class="message-tag progress-bar-info"></span>用户上网时段</a>
-                <a  href="user_pic_shopping.html" class="list-group-item"><span class="message-tag progress-bar-success"></span>用户画像</a>         
-                <a  href="topPV.html" class="list-group-item"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </a>
+		<div class="tile">
+			<h2 class="tile-title" style="font-size:large">系统导航</h2>
+			<div class="list-group list-group-flat m-t-15">
+				<a  href="user_area.html" class="list-group-item"><span class="message-tag progress-bar-warning"></span>用户活跃度分析</a>
+				<a  href="brand.html"  class="list-group-item"><span class="message-tag progress-bar-danger"></span>用户终端品牌</a>
+				<a  href="surfing_time.html"  class="list-group-item"><span class="message-tag progress-bar-info"></span>用户上网时段</a>
+				<a  href="user_pic_shopping.html" class="list-group-item"><span class="message-tag progress-bar-success"></span>用户画像</a>         
+				<a  href="topPV.html" class="list-group-item"><span class="message-tag progress-bar-warning"></span>热门网站TOP20 </a>
          <!--    <a  href="user_pic.html" class="list-group-item"><span class="message-tag progress-bar-success"></span>号码包导出</a>
          <a  href="user_pic.html" class="list-group-item"><span class="message-tag progress-bar-warning"></span>手机号数据导出</a> -->
 
@@ -89,29 +80,151 @@
 
 
 </aside>
-
 <!-- Content -->
-<section id="content" class="container" style="margin-left: 233px">
 
 
-    <!-- Notification Drawer -->
-
-
-    
-
-
-    <hr class="whiter" />
-
-
-    
-
-    <!-- Main Widgets -->
-
-    
-
-</section>
 </div>
 
+<canvas></canvas><script>
+window.onload = () => {
+	const CANVAS = document.getElementsByTagName("canvas")[0];
+	const CTX = CANVAS.getContext("2d");
+	const CHARS = [];
+	const MAX_CHARS = 200;
+	const SEPARATION = 1.5;
+
+	let ww, wh, camera;
+
+	class Vector {
+		constructor(x, y, z) {
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		rotate(dir, ang) {
+			const X = this.x;
+			const Y = this.y;
+			const Z = this.z;
+
+			const SIN = Math.sin(ang);
+			const COS = Math.cos(ang);
+
+			if (dir === "x") {
+				this.y = Y * COS - Z * SIN;
+				this.z = Y * SIN + Z * COS;
+			} else if (dir === "y") {
+				this.x = X * COS - Z * SIN;
+				this.z = X * SIN + Z * COS;
+			}
+		}
+
+		project() {
+			const ZP = this.z + camera.z;
+			const DIV = ZP / 600;
+			const XP = (this.x + camera.x) / DIV;
+			const YP = (this.y + camera.y) / DIV;
+			const CENTER = getCenter();
+			return [XP + CENTER[0], YP + CENTER[1], ZP];
+		}
+	}
+
+	class Char {
+		constructor(letter, pos) {
+			this.letter = letter;
+			this.pos = pos;
+		}
+
+		rotate(dir, ang) {
+			this.pos.rotate(dir, ang);
+		}
+
+		render() {
+			const PIXEL = this.pos.project();
+			const XP = PIXEL[0];
+			const YP = PIXEL[1];
+			const MAX_SIZE = 50;
+			const SIZE = (1 / PIXEL[2] * MAX_SIZE) | 0;
+			const BRIGHTNESS = SIZE / MAX_SIZE;
+			const COL = `rgba(255, 255, ${100 * BRIGHTNESS | 0 + 150}, ${BRIGHTNESS})`;
+			
+			CTX.beginPath();
+			CTX.fillStyle = COL;
+			CTX.font = SIZE + "px monospace";
+			CTX.fillText(this.letter, XP, YP);
+			CTX.fill();
+			CTX.closePath();
+		}
+	}
+
+	function getCenter() {
+		return [ww / 2, wh / 2];
+	}
+
+	function signedRandom() {
+		return Math.random() - Math.random();
+	}
+
+	function render() {
+		for (let i = 0; i < CHARS.length; i++) {
+			CHARS[i].render();
+		}
+	}
+	
+	let time = 0;
+	function update() {
+		CTX.clearRect(0, 0, ww, wh);
+		for (let i = 0; i < CHARS.length; i++) {
+			const DX = 0.005 * Math.sin(time * 0.001);
+			const DY = 0.005 * Math.cos(time * 0.001);
+			CHARS[i].rotate("x", DX);
+			CHARS[i].rotate("y", DY);
+		}
+		++time;
+	}
+
+	function loop() {
+		window.requestAnimationFrame(loop);
+		update();
+		render();
+	}
+	
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	};
+
+	function createChars() {
+		for (let i = 0; i < MAX_CHARS; i++) {
+			const CHARACTER = String.fromCharCode((Math.random() * 93 + 34) | 0);
+			const X = signedRandom() * SEPARATION;
+			const Y = signedRandom() * SEPARATION;
+			const Z = signedRandom() * SEPARATION;
+			const POS = new Vector(X, Y, Z);
+			const CHAR = new Char(CHARACTER, POS);
+			CHARS.push(CHAR);
+		}
+	}
+
+	function setDim() {
+		ww = window.innerWidth;
+		wh = window.innerHeight;
+		CANVAS.width = ww;
+		CANVAS.height = wh;
+	}
+
+	function initCamera() {
+		camera = new Vector(0, 0, SEPARATION + 1);
+	}
+
+	window.onresize = setDim;
+
+	(() => {
+		setDim();
+		initCamera();
+		createChars();
+		loop();
+	})();
+};</script>
 <!--</section>
 -->
 <!-- Javascript Libraries -->
